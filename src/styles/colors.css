@@ -1,0 +1,19 @@
+:root {
+  /* Backgrounds */
+  --bg-main: #0d0d19;
+  --bg-card: #291b5a;
+  --bg-surface: #221158;
+  --white: #ffffff;
+
+  /* Brand / Accent */
+  --accent-primary: #ab91ea;
+
+  /* Text Colors */
+  --text-headline: #f4f7ff;
+  --text-subtext: #a7b1bd;
+
+  /* Transparent Variants */
+  --bg-main-alpha-40: rgba(13, 13, 25, 0.4);
+  --white-alpha-22: rgba(255, 255, 255, 0.22);
+  --white-alpha-4: rgba(255, 255, 255, 0.04);
+}
