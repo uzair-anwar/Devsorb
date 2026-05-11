@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Poppins, Plus_Jakarta_Sans, Inter } from "next/font/google";
+import { Poppins, Plus_Jakarta_Sans, Inter, Outfit } from "next/font/google";
 import "@/styles/global.css";
 import MainLayout from "@/styles/layout/MainLayout";
 
@@ -21,11 +21,17 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+const outfit = Outfit({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-outfit",
+});
+
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
       lang="en"
-      className={`${poppins.variable} ${plusJakartaSans.variable} ${inter.variable}`}
+      className={`${poppins.variable} ${plusJakartaSans.variable} ${inter.variable} ${outfit.variable}`}
     >
       <body>
         <MainLayout>{children}</MainLayout>
