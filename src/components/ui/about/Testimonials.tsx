@@ -5,31 +5,31 @@ import { useState } from "react";
 const testimonials = [
   {
     quote:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "They took the time to understand my brand and target audience, and developed a marketing strategy that perfectly captured our essence. Their creative campaigns led to a significant increase in sales, and their expertise helped us secure a valuable partnership with another company.",
     name: "Andrew Colley",
     company: "ADAMA Software",
   },
   {
     quote:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "Devsorb delivered a robust platform that exceeded our expectations. Their team was responsive, technically sharp, and always willing to go the extra mile to ensure everything worked flawlessly.",
     name: "Sarah Mitchell",
     company: "TechVentures Inc.",
   },
   {
     quote:
-      "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt.",
+      "Working with Devsorb transformed how we approach product development. Their engineering team integrated seamlessly with ours and helped us ship features twice as fast as before.",
     name: "James Thornton",
     company: "ScaleUp Labs",
   },
   {
     quote:
-      "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est qui dolorem ipsum.",
+      "From ideation to launch, Devsorb guided us through every step. Their expertise in AI and blockchain helped us build a cutting-edge solution that set us apart from competitors.",
     name: "Emily Davis",
     company: "Pinnacle Solutions",
   },
   {
     quote:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.",
+      "The team at Devsorb brought clarity to a complex project. Their structured approach and clear communication made the entire development process smooth and predictable.",
     name: "Michael Brown",
     company: "Nexus Digital",
   },
