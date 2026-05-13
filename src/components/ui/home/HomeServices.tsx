@@ -1,6 +1,20 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+
+const titleToSlug: Record<string, string> = {
+  "Custom Software Development": "custom-software-development",
+  "AI & Machine Learning": "ai-machine-learning-development",
+  "Blockchain Development": "blockchain-development",
+  "MVP Development": "mvp-development-services",
+  "Front & Backend Development": "front-backend-development",
+  "Android & iOS App Development": "android-ios-app-development",
+  "DevOps & Cloud": "devops-cloud-services",
+  "Software Testing": "software-testing-services",
+  "System Integration": "system-integration-services",
+  "Enterprise Software Development": "enterprise-software-development",
+};
 
 const services = [
   {
@@ -160,47 +174,52 @@ const HomeServices = () => {
 
       {/* Cards grid */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {visible.map((svc) => (
-          <div
-            key={svc.title}
-            className="group relative flex flex-col gap-10 rounded-[12px] border border-[rgba(255,255,255,0.07)] p-6 transition-all duration-300 hover:border-[rgba(171,145,234,0.3)]"
-            style={{
-              backgroundImage:
-                "linear-gradient(145deg, rgba(34,17,88,0.55) 0%, rgba(13,13,25,0.9) 100%)",
-            }}
-          >
-            {/* Icon + arrow row */}
-            <div className="flex items-start justify-between">
-              <div className="flex h-11 w-11 items-center justify-center rounded-[8px] bg-[rgba(171,145,234,0.12)]">
-                {svc.icon}
+        {visible.map((svc) => {
+          const slug = titleToSlug[svc.title];
+          const href = slug ? `/services/${slug}` : "#services";
+          return (
+            <Link
+              key={svc.title}
+              href={href}
+              className="group relative flex flex-col gap-10 rounded-[12px] border border-[rgba(255,255,255,0.07)] p-6 transition-all duration-300 hover:border-[rgba(171,145,234,0.3)]"
+              style={{
+                backgroundImage:
+                  "linear-gradient(145deg, rgba(34,17,88,0.55) 0%, rgba(13,13,25,0.9) 100%)",
+              }}
+            >
+              {/* Icon + arrow row */}
+              <div className="flex items-start justify-between">
+                <div className="flex h-11 w-11 items-center justify-center rounded-[8px] bg-[rgba(171,145,234,0.12)]">
+                  {svc.icon}
+                </div>
+                <span
+                  aria-hidden="true"
+                  className="flex h-8 w-8 items-center justify-center rounded-full border border-[rgba(255,255,255,0.12)] text-[rgba(255,255,255,0.5)] transition-all duration-200 group-hover:border-[rgba(171,145,234,0.5)] group-hover:text-[var(--accent-primary)]"
+                >
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
               </div>
-              <button
-                aria-label={`Learn more about ${svc.title}`}
-                className="flex h-8 w-8 items-center justify-center rounded-full border border-[rgba(255,255,255,0.12)] text-[rgba(255,255,255,0.5)] transition-all duration-200 group-hover:border-[rgba(171,145,234,0.5)] group-hover:text-[var(--accent-primary)]"
-              >
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button>
-            </div>
 
-            {/* Text */}
-            <div className="flex flex-col gap-2">
-              <p
-                className="text-[15px] font-semibold leading-[1.3] text-[var(--text-headline)]"
-                style={{ fontFamily: "var(--font-poppins-stack)" }}
-              >
-                {svc.title}
-              </p>
-              <p
-                className="text-[13px] leading-[1.6] text-[rgba(255,255,255,0.55)]"
-                style={{ fontFamily: "var(--font-poppins-stack)" }}
-              >
-                {svc.description}
-              </p>
-            </div>
-          </div>
-        ))}
+              {/* Text */}
+              <div className="flex flex-col gap-2">
+                <p
+                  className="text-[15px] font-semibold leading-[1.3] text-[var(--text-headline)]"
+                  style={{ fontFamily: "var(--font-poppins-stack)" }}
+                >
+                  {svc.title}
+                </p>
+                <p
+                  className="text-[13px] leading-[1.6] text-[rgba(255,255,255,0.55)]"
+                  style={{ fontFamily: "var(--font-poppins-stack)" }}
+                >
+                  {svc.description}
+                </p>
+              </div>
+            </Link>
+          );
+        })}
       </div>
 
       {/* Pagination arrow */}

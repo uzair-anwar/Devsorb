@@ -1,13 +1,33 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Button from "@/components/shared/button/button";
+import { SERVICES } from "@/lib/services-data";
+
+type NavItem = {
+  name: string;
+  href: string;
+  hasDropdown?: boolean;
+};
+
+const navItems: NavItem[] = [
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Services", href: "/services", hasDropdown: true },
+  { name: "Hire Developer", href: "#hire" },
+  { name: "Success Stories", href: "#success" },
+  { name: "Career", href: "#career" },
+  { name: "Contact us", href: "/contact-us" },
+];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,15 +37,14 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navItems = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Services", href: "#services", hasDropdown: true },
-    { name: "Hire Developer", href: "#hire" },
-    { name: "Success Stories", href: "#success" },
-    { name: "Career", href: "#career" },
-    { name: "Contact us", href: "#contact" },
-  ];
+  const openServices = () => {
+    if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+    setServicesOpen(true);
+  };
+  const scheduleClose = () => {
+    if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+    closeTimerRef.current = setTimeout(() => setServicesOpen(false), 150);
+  };
 
   return (
     <nav
@@ -50,36 +69,89 @@ const Navbar = () => {
             </Link>
 
             <div className="flex h-[2rem] items-center gap-[1.9375rem]">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="font-poppins flex items-center gap-1 align-middle text-[1rem] leading-[1rem] font-normal whitespace-nowrap transition-opacity hover:opacity-70"
-                  style={{
-                    color: "var(--white)",
-                    fontFamily: "var(--font-poppins-stack)",
-                  }}
-                >
-                  {item.name}
-                  {item.hasDropdown && (
-                    <svg
-                      width="10"
-                      height="10"
-                      viewBox="0 0 10 10"
-                      fill="none"
-                      aria-hidden="true"
+              {navItems.map((item) =>
+                item.hasDropdown ? (
+                  <div
+                    key={item.name}
+                    className="relative"
+                    onMouseEnter={openServices}
+                    onMouseLeave={scheduleClose}
+                  >
+                    <button
+                      type="button"
+                      onClick={() => setServicesOpen((s) => !s)}
+                      aria-haspopup="true"
+                      aria-expanded={servicesOpen}
+                      className="font-poppins flex cursor-pointer items-center gap-1 align-middle text-[1rem] leading-[1rem] font-normal whitespace-nowrap transition-opacity hover:opacity-70"
+                      style={{
+                        color: "var(--white)",
+                        fontFamily: "var(--font-poppins-stack)",
+                      }}
                     >
-                      <path
-                        d="M2 3.5L5 6.5L8 3.5"
-                        stroke="currentColor"
-                        strokeWidth="1.4"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  )}
-                </Link>
-              ))}
+                      {item.name}
+                      <svg
+                        width="10"
+                        height="10"
+                        viewBox="0 0 10 10"
+                        fill="none"
+                        aria-hidden="true"
+                        className={`transition-transform duration-200 ${
+                          servicesOpen ? "rotate-180" : ""
+                        }`}
+                      >
+                        <path
+                          d="M2 3.5L5 6.5L8 3.5"
+                          stroke="currentColor"
+                          strokeWidth="1.4"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </button>
+
+                    {servicesOpen && (
+                      <div
+                        className="absolute left-1/2 top-full z-[120] mt-3 w-[320px] -translate-x-1/2 rounded-[10px] border border-[rgba(255,255,255,0.08)] p-2 shadow-[0_10px_40px_rgba(0,0,0,0.5)] backdrop-blur-md"
+                        style={{
+                          backgroundImage:
+                            "linear-gradient(180deg, rgba(34,17,88,0.95) 0%, rgba(13,13,25,0.97) 100%)",
+                        }}
+                        role="menu"
+                      >
+                        <ul className="flex flex-col">
+                          {SERVICES.map((svc) => (
+                            <li key={svc.slug}>
+                              <Link
+                                href={`/services/${svc.slug}`}
+                                onClick={() => setServicesOpen(false)}
+                                className="block rounded-[6px] px-3 py-2 text-[13px] text-[rgba(255,255,255,0.75)] transition-colors hover:bg-[rgba(171,145,234,0.12)] hover:text-[var(--text-headline)]"
+                                style={{
+                                  fontFamily: "var(--font-poppins-stack)",
+                                }}
+                                role="menuitem"
+                              >
+                                {svc.navTitle}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="font-poppins flex items-center gap-1 align-middle text-[1rem] leading-[1rem] font-normal whitespace-nowrap transition-opacity hover:opacity-70"
+                    style={{
+                      color: "var(--white)",
+                      fontFamily: "var(--font-poppins-stack)",
+                    }}
+                  >
+                    {item.name}
+                  </Link>
+                ),
+              )}
             </div>
 
             <div className="shrink-0">
@@ -132,11 +204,11 @@ const Navbar = () => {
       </div>
 
       <div
-        className={`fixed inset-0 z-[110] bg-[var(--bg-main)] transition-transform duration-500 ease-in-out lg:hidden ${
+        className={`fixed inset-0 z-[110] overflow-y-auto bg-[var(--bg-main)] transition-transform duration-500 ease-in-out lg:hidden ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="flex h-full flex-col px-8 py-12">
+        <div className="flex min-h-full flex-col px-8 py-12">
           <div className="mb-16 flex items-center justify-between">
             <Image
               src="/assets/logo.svg"
@@ -169,21 +241,77 @@ const Navbar = () => {
           </div>
 
           <div className="flex flex-col gap-8">
-            {navItems.map((item, index) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="font-poppins text-3xl font-medium transition-all hover:pl-2 hover:text-[var(--accent-primary)]"
-                style={{
-                  color: "var(--white)",
-                  transitionDelay: `${index * 50}ms`,
-                  fontFamily: "var(--font-poppins-stack)",
-                }}
-                onClick={() => setIsOpen(false)}
-              >
-                {item.name}
-              </Link>
-            ))}
+            {navItems.map((item, index) =>
+              item.hasDropdown ? (
+                <div key={item.name} className="flex flex-col gap-4">
+                  <button
+                    type="button"
+                    onClick={() => setMobileServicesOpen((v) => !v)}
+                    className="font-poppins flex w-full cursor-pointer items-center justify-between text-3xl font-medium transition-all hover:text-[var(--accent-primary)]"
+                    style={{
+                      color: "var(--white)",
+                      transitionDelay: `${index * 50}ms`,
+                      fontFamily: "var(--font-poppins-stack)",
+                    }}
+                  >
+                    <span>{item.name}</span>
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 10 10"
+                      fill="none"
+                      aria-hidden="true"
+                      className={`transition-transform duration-200 ${
+                        mobileServicesOpen ? "rotate-180" : ""
+                      }`}
+                    >
+                      <path
+                        d="M2 3.5L5 6.5L8 3.5"
+                        stroke="currentColor"
+                        strokeWidth="1.4"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </button>
+                  {mobileServicesOpen && (
+                    <ul className="flex flex-col gap-3 pl-3">
+                      {SERVICES.map((svc) => (
+                        <li key={svc.slug}>
+                          <Link
+                            href={`/services/${svc.slug}`}
+                            onClick={() => {
+                              setIsOpen(false);
+                              setMobileServicesOpen(false);
+                            }}
+                            className="block text-[16px] text-[rgba(255,255,255,0.7)] transition-colors hover:text-[var(--accent-primary)]"
+                            style={{
+                              fontFamily: "var(--font-poppins-stack)",
+                            }}
+                          >
+                            {svc.navTitle}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              ) : (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="font-poppins text-3xl font-medium transition-all hover:pl-2 hover:text-[var(--accent-primary)]"
+                  style={{
+                    color: "var(--white)",
+                    transitionDelay: `${index * 50}ms`,
+                    fontFamily: "var(--font-poppins-stack)",
+                  }}
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item.name}
+                </Link>
+              ),
+            )}
             <div className="mt-8 border-t border-[var(--white)]/10 pt-8">
               <Button
                 variant="primary"
