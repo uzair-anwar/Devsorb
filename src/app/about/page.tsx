@@ -1,4 +1,5 @@
 import Navbar from "@/components/shared/navbar/Navbar";
+import Footer from "@/components/shared/footer/Footer";
 import AboutHero from "@/components/ui/about/AboutHero";
 import WhoWeAre from "@/components/ui/about/WhoWeAre";
 import WhyChooseUs from "@/components/ui/about/WhyChooseUs";
@@ -16,6 +17,7 @@ export default function AboutPage() {
       <Awards />
       <AboutCTA />
       <Testimonials />
+      <Footer />
     </main>
   );
 }

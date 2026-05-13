@@ -19,11 +19,12 @@ const Navbar = () => {
 
   const navItems = [
     { name: "Home", href: "/" },
-    { name: "Services", href: "#services" },
     { name: "About", href: "/about" },
+    { name: "Services", href: "#services", hasDropdown: true },
     { name: "Hire Developer", href: "#hire" },
     { name: "Success Stories", href: "#success" },
     { name: "Career", href: "#career" },
+    { name: "Contact us", href: "#contact" },
   ];
 
   return (
@@ -53,13 +54,30 @@ const Navbar = () => {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="font-poppins align-middle text-[1rem] leading-[1rem] font-normal whitespace-nowrap transition-opacity hover:opacity-70"
+                  className="font-poppins flex items-center gap-1 align-middle text-[1rem] leading-[1rem] font-normal whitespace-nowrap transition-opacity hover:opacity-70"
                   style={{
                     color: "var(--white)",
                     fontFamily: "var(--font-poppins-stack)",
                   }}
                 >
                   {item.name}
+                  {item.hasDropdown && (
+                    <svg
+                      width="10"
+                      height="10"
+                      viewBox="0 0 10 10"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M2 3.5L5 6.5L8 3.5"
+                        stroke="currentColor"
+                        strokeWidth="1.4"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  )}
                 </Link>
               ))}
             </div>
