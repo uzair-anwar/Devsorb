@@ -152,24 +152,34 @@ const HomeServices = () => {
   const visible = services.slice(start, start + VISIBLE);
 
   return (
-    <section id="services" className="relative mx-auto w-full max-w-[1180px] px-4 py-20 lg:px-0">
+    <section id="services" className="relative mx-auto w-full max-w-[1180px] px-4 py-16 lg:h-[670px] lg:px-0 lg:py-0">
       {/* Label + heading */}
-      <div className="mb-12 flex flex-col gap-3">
-        <div className="flex items-center gap-3">
-          <span className="h-px w-8 bg-[rgba(255,255,255,0.2)]" />
-          <span
-            className="text-[12px] font-medium uppercase tracking-[0.18em] text-[rgba(255,255,255,0.45)]"
-            style={{ fontFamily: "var(--font-poppins-stack)" }}
+      <div className="mb-12 flex flex-col gap-3 lg:mb-[56px] lg:h-[116px] lg:flex-row lg:items-start lg:justify-between">
+        <div className="flex flex-col gap-3 lg:gap-4">
+          <div className="flex items-center gap-3">
+            <span className="h-px w-8 bg-[rgba(255,255,255,0.2)]" />
+            <span
+              className="text-[12px] font-medium uppercase leading-[18px] tracking-[0.18em] text-[rgba(255,255,255,0.45)] lg:text-[16px] lg:leading-4"
+              style={{ fontFamily: "var(--font-poppins-stack)" }}
+            >
+              Services
+            </span>
+            <span className="h-px w-8 bg-[rgba(255,255,255,0.2)]" />
+          </div>
+          <h2
+            className="max-w-[400px] text-[32px] font-bold leading-[1.2] text-[var(--text-headline)] md:text-[40px] lg:max-w-[358px] lg:text-[36px] lg:leading-[42px]"
+            style={{ fontFamily: "var(--font-display)" }}
           >
-            Services
-          </span>
+            Services That Power Your Growth
+          </h2>
         </div>
-        <h2
-          className="max-w-[400px] text-[32px] font-bold leading-[1.2] text-[var(--text-headline)] md:text-[40px]"
-          style={{ fontFamily: "var(--font-display)" }}
+        <Link
+          href="/services"
+          className="hidden h-10 w-[135px] items-center justify-center rounded-[4px] border border-[rgba(255,255,255,0.42)] bg-[linear-gradient(135deg,rgba(37,22,111,0.95)_0%,rgba(88,67,154,0.55)_100%)] text-[16px] font-medium leading-4 text-white shadow-[0_0_26px_rgba(135,107,255,0.22)] transition-colors hover:border-[rgba(255,255,255,0.7)] lg:mt-[76px] lg:flex"
+          style={{ fontFamily: "var(--font-poppins-stack)" }}
         >
-          Services That Power Your Growth
-        </h2>
+          Explore&nbsp; More
+        </Link>
       </div>
 
       {/* Cards grid */}
@@ -181,15 +191,15 @@ const HomeServices = () => {
             <Link
               key={svc.title}
               href={href}
-              className="group relative flex flex-col gap-10 rounded-[12px] border border-[rgba(255,255,255,0.07)] p-6 transition-all duration-300 hover:border-[rgba(171,145,234,0.3)]"
+              className="group relative flex min-h-[280px] flex-col justify-between rounded-[12px] border border-[rgba(255,255,255,0.07)] p-6 transition-all duration-300 hover:border-[rgba(171,145,234,0.3)] lg:min-h-[295px]"
               style={{
                 backgroundImage:
-                  "linear-gradient(145deg, rgba(34,17,88,0.55) 0%, rgba(13,13,25,0.9) 100%)",
+                  "linear-gradient(180deg, rgba(75,52,175,0.50) 0%, rgba(10,8,26,0.97) 70%)",
               }}
             >
               {/* Icon + arrow row */}
               <div className="flex items-start justify-between">
-                <div className="flex h-11 w-11 items-center justify-center rounded-[8px] bg-[rgba(171,145,234,0.12)]">
+                <div className="flex h-[50px] w-[50px] items-center justify-center rounded-[10px] bg-[rgba(9,7,28,0.85)]">
                   {svc.icon}
                 </div>
                 <span
@@ -222,9 +232,18 @@ const HomeServices = () => {
         })}
       </div>
 
-      {/* Pagination arrow */}
+      {/* Pagination arrows */}
       {total > 1 && (
-        <div className="mt-8 flex justify-center">
+        <div className="mt-8 flex justify-center gap-3">
+          <button
+            onClick={() => setPage((p) => (p - 1 + total) % total)}
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-[rgba(255,255,255,0.15)] text-[rgba(255,255,255,0.4)] transition-colors hover:border-[var(--accent-primary)] hover:text-[var(--accent-primary)]"
+            aria-label="Previous services"
+          >
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M10 3l-5 5 5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
           <button
             onClick={() => setPage((p) => (p + 1) % total)}
             className="flex h-10 w-10 items-center justify-center rounded-full border border-[rgba(255,255,255,0.15)] text-white transition-colors hover:border-[var(--accent-primary)] hover:text-[var(--accent-primary)]"

@@ -7,133 +7,172 @@ const testimonials = [
     quote:
       "They took the time to understand my brand and target audience, and developed a marketing strategy that perfectly captured our essence. Their creative campaigns led to a significant increase in sales, and their expertise helped us secure a valuable partnership with another company.",
     name: "Andrew Colley",
-    role: "ADAMA Software",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&auto=format&fit=crop&crop=face",
+    company: "ADAMA Software",
   },
   {
     quote:
       "Working with Devsorb transformed our entire product delivery pipeline. Their team integrated seamlessly with ours, bringing both technical depth and clear communication that made every sprint feel productive.",
     name: "Sarah Mitchell",
-    role: "CTO, FinScale",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&auto=format&fit=crop&crop=face",
+    company: "CTO, FinScale",
   },
   {
     quote:
       "From day one the team was proactive, responsive, and laser-focused on quality. They helped us launch our MVP three weeks ahead of schedule — and the product held up perfectly under real user traffic.",
     name: "James Okafor",
-    role: "Founder, Edutrack",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&auto=format&fit=crop&crop=face",
+    company: "Founder, Edutrack",
   },
 ];
 
+const QuoteIcon = () => (
+  <svg
+    width="22"
+    height="18"
+    viewBox="0 0 22 18"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M0 18V12C0 9.5 0.5 7.16667 1.5 5C2.5 2.83333 4.16667 1.16667 6.5 0L9 1.8C7.83333 2.86667 6.83333 4.16667 6 5.7C5.16667 7.23333 4.66667 8.83333 4.5 10.5H9V18H0ZM12.5 18V12C12.5 9.5 13 7.16667 14 5C15 2.83333 16.6667 1.16667 19 0L21.5 1.8C20.3333 2.86667 19.3333 4.16667 18.5 5.7C17.6667 7.23333 17.1667 8.83333 17 10.5H21.5V18H12.5Z"
+      fill="#4F60FA"
+    />
+  </svg>
+);
+
+type Testimonial = (typeof testimonials)[number];
+
+const TestimonialCard = ({
+  testimonial,
+  style,
+}: {
+  testimonial: Testimonial;
+  style?: React.CSSProperties;
+}) => (
+  <div
+    className="absolute inset-0 flex flex-col justify-between gap-10 overflow-hidden rounded-[20px] border border-[#6269ae] p-9"
+    style={{
+      backgroundImage: "linear-gradient(180deg, #020a18 0%, #221158 100%)",
+      boxShadow: "0px 0px 14px 0px rgba(105,111,166,0.3)",
+      transition:
+        "transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), filter 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
+      ...style,
+    }}
+  >
+    {/* Top bloom */}
+    <div
+      className="pointer-events-none absolute -top-6 left-[80px] h-[90px] w-[170px] rounded-full blur-[44px]"
+      style={{ backgroundColor: "#5834e9" }}
+    />
+    <p
+      className="relative z-10 text-[15px] leading-[24px] text-[rgba(255,255,255,0.78)]"
+      style={{ fontFamily: "var(--font-poppins-stack)" }}
+    >
+      &ldquo;{testimonial.quote}&rdquo;
+    </p>
+    <div className="relative z-10 flex items-end justify-between">
+      <div className="flex flex-col gap-1.5">
+        <p
+          className="text-[13px] leading-[14px] text-[var(--text-headline)]"
+          style={{ fontFamily: "var(--font-poppins-stack)" }}
+        >
+          {testimonial.name}
+        </p>
+        <p
+          className="text-[12px] font-semibold leading-[14px] text-[rgba(255,255,255,0.65)]"
+          style={{ fontFamily: "var(--font-poppins-stack)" }}
+        >
+          {testimonial.company}
+        </p>
+      </div>
+      <div
+        className="flex h-[54px] w-[54px] items-center justify-center rounded-full border"
+        style={{
+          background:
+            "radial-gradient(circle at 30% 30%, rgba(74,86,255,0.18), #02041a 70%)",
+          borderColor: "rgba(74,86,255,0.45)",
+        }}
+      >
+        <QuoteIcon />
+      </div>
+    </div>
+  </div>
+);
+
 const HomeTestimonials = () => {
   const [active, setActive] = useState(0);
-  const t = testimonials[active];
+  const total = testimonials.length;
+
+  const getOffset = (i: number): number => (i - active + total) % total;
+
+  const getCardStyle = (offset: number): React.CSSProperties => ({
+    transform: `translateX(${offset * 38}px) translateY(${offset * 18}px) rotate(${offset * 7}deg)`,
+    opacity: offset === 0 ? 1 : Math.max(0.35, 0.8 - offset * 0.12),
+    zIndex: 10 - offset,
+    filter: offset === 0 ? "none" : `blur(${offset * 0.6}px)`,
+  });
 
   return (
-    <section className="relative overflow-hidden py-24">
-      {/* Background glow */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-1/2 -z-0 h-[600px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-30 blur-[160px]"
-        style={{
-          backgroundImage:
-            "radial-gradient(ellipse at center, #3a1a8a 0%, transparent 70%)",
-        }}
-      />
+    <section className="relative mx-auto w-full max-w-[1300px] overflow-hidden px-4 py-24 lg:h-[718px] lg:max-w-[699px] lg:px-0 lg:py-0">
+      {/* Globe background */}
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+        <img
+          src="/assets/about-testimonial-globe.png"
+          alt=""
+          className="h-auto w-[720px] max-w-none object-contain opacity-50"
+          style={{ marginTop: "120px" }}
+        />
+      </div>
 
-      <div className="relative z-10 mx-auto max-w-[1180px] px-4 lg:px-0">
-        {/* Label + heading */}
-        <div className="mb-14 flex flex-col items-center gap-3 text-center">
-          <div className="flex items-center gap-3">
-            <span className="h-px w-8 bg-[rgba(255,255,255,0.2)]" />
-            <span
-              className="text-[12px] font-medium uppercase tracking-[0.18em] text-[rgba(255,255,255,0.45)]"
-              style={{ fontFamily: "var(--font-poppins-stack)" }}
-            >
-              Testimonial
-            </span>
-            <span className="h-px w-8 bg-[rgba(255,255,255,0.2)]" />
+      {/* Section heading */}
+      <div className="relative z-10 mb-20 flex flex-col items-center gap-4 lg:mb-[56px]">
+        <div className="flex items-center gap-3">
+          <div className="relative h-px w-12 bg-gradient-to-r from-transparent via-[var(--text-headline)] to-transparent">
+            <div className="absolute -right-1 top-1/2 h-[5px] w-[5px] -translate-y-1/2 rounded-full bg-[#4f60fa] blur-[1px]" />
           </div>
-          <h2
-            className="text-[32px] font-bold leading-[1.2] text-[var(--text-headline)] md:text-[40px]"
+          <span
+            className="text-[16px] font-medium leading-[16px] text-[var(--text-headline)]"
             style={{ fontFamily: "var(--font-display)" }}
           >
-            Real Stories, Real Results
-          </h2>
+            Testimonial
+          </span>
+          <div className="relative h-px w-12 bg-gradient-to-r from-transparent via-[var(--text-headline)] to-transparent">
+            <div className="absolute -left-1 top-1/2 h-[5px] w-[5px] -translate-y-1/2 rounded-full bg-[#4f60fa] blur-[1px]" />
+          </div>
+        </div>
+        <h2
+          className="text-[36px] font-bold leading-[40px] text-[var(--text-headline)] md:text-[44px] md:leading-[48px]"
+          style={{ fontFamily: "var(--font-display)" }}
+        >
+          Real Stories, Real Results
+        </h2>
+      </div>
+
+      {/* Slider */}
+      <div className="relative z-10 mx-auto flex flex-col items-center gap-14">
+        <div className="relative h-[440px] w-full max-w-[390px]">
+          {testimonials.map((t, i) => (
+            <TestimonialCard
+              key={i}
+              testimonial={t}
+              style={getCardStyle(getOffset(i))}
+            />
+          ))}
         </div>
 
-        {/* Testimonial card */}
-        <div className="relative mx-auto max-w-[780px]">
-          {/* Decorative phone/card mockups in background */}
-          <div aria-hidden="true" className="pointer-events-none absolute -left-16 top-8 hidden h-[220px] w-[110px] rotate-[-12deg] rounded-[16px] border border-[rgba(255,255,255,0.06)] bg-[rgba(34,17,88,0.4)] backdrop-blur-sm lg:block" />
-          <div aria-hidden="true" className="pointer-events-none absolute -right-16 top-8 hidden h-[220px] w-[110px] rotate-[12deg] rounded-[16px] border border-[rgba(255,255,255,0.06)] bg-[rgba(34,17,88,0.4)] backdrop-blur-sm lg:block" />
-
-          {/* Main card */}
-          <div
-            className="relative rounded-[16px] border border-[rgba(255,255,255,0.09)] p-8 text-center md:p-12"
-            style={{
-              backgroundImage:
-                "linear-gradient(145deg, rgba(34,17,88,0.5) 0%, rgba(13,13,25,0.9) 100%)",
-            }}
-          >
-            {/* Quote mark */}
-            <div
-              aria-hidden="true"
-              className="absolute left-8 top-6 text-[72px] leading-none text-[rgba(171,145,234,0.15)] select-none"
-              style={{ fontFamily: "Georgia, serif" }}
-            >
-              &ldquo;
-            </div>
-
-            {/* Quote text */}
-            <p
-              className="relative z-10 mb-8 text-[16px] leading-[1.75] text-[rgba(255,255,255,0.75)] md:text-[18px]"
-              style={{ fontFamily: "var(--font-poppins-stack)" }}
-            >
-              {t.quote}
-            </p>
-
-            {/* Author */}
-            <div className="flex flex-col items-center gap-3">
-              <div className="h-12 w-12 overflow-hidden rounded-full border-2 border-[rgba(171,145,234,0.4)]">
-                <img src={t.avatar} alt={t.name} className="h-full w-full object-cover" />
-              </div>
-              <div>
-                <p
-                  className="text-[15px] font-semibold text-[var(--text-headline)]"
-                  style={{ fontFamily: "var(--font-poppins-stack)" }}
-                >
-                  {t.name}
-                </p>
-                <p
-                  className="text-[13px] text-[rgba(255,255,255,0.45)]"
-                  style={{ fontFamily: "var(--font-poppins-stack)" }}
-                >
-                  {t.role}
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Dots navigation */}
-          <div className="mt-6 flex justify-center gap-2">
-            {testimonials.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setActive(i)}
-                aria-label={`Testimonial ${i + 1}`}
-                className="h-2 rounded-full transition-all duration-300"
-                style={{
-                  width: i === active ? "24px" : "8px",
-                  backgroundColor:
-                    i === active
-                      ? "rgba(171,145,234,0.9)"
-                      : "rgba(255,255,255,0.2)",
-                }}
-              />
-            ))}
-          </div>
+        {/* Pagination */}
+        <div className="flex gap-[8px]">
+          {testimonials.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => setActive(i)}
+              aria-label={`Show testimonial ${i + 1}`}
+              className={`h-[3px] w-12 rounded-full transition-all duration-300 ${
+                i === active
+                  ? "bg-[var(--text-headline)] shadow-[0px_0px_9px_0px_rgba(57,115,233,0.64)]"
+                  : "cursor-pointer bg-[rgba(28,38,58,0.6)] hover:bg-[rgba(28,38,58,0.9)]"
+              }`}
+            />
+          ))}
         </div>
       </div>
     </section>

@@ -1,8 +1,6 @@
-import Button from "@/components/shared/button/button";
-
 const HomeHireDevelopers = () => {
   return (
-    <section className="mx-auto w-full max-w-[1180px] px-4 py-10 lg:px-0">
+    <section className="mx-auto w-full max-w-[1180px] px-4 py-10 lg:h-[505px] lg:px-0">
       <div
         id="hire"
         className="relative overflow-hidden rounded-[16px] px-8 py-16 text-center"
@@ -49,9 +47,12 @@ const HomeHireDevelopers = () => {
             Access vetted talent, on your schedule. Whether you need one
             engineer or a dedicated team, we&apos;ve got you covered.
           </p>
-          <Button variant="primary" size="sm" className="mt-2">
+          <button
+            className="mt-2 h-[40px] rounded-[8px] border border-[#020a18] bg-[var(--text-headline)] px-6 py-[10px] text-[16px] font-medium leading-[16px] text-[#150544] shadow-[0px_0px_8px_rgba(57,115,233,0.25)]"
+            style={{ fontFamily: "var(--font-display)" }}
+          >
             Hire Developers
-          </Button>
+          </button>
         </div>
       </div>
     </section>

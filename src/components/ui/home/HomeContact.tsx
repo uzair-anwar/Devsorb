@@ -19,22 +19,36 @@ const HomeContact = () => {
   };
 
   return (
-    <section id="contact" className="relative mx-auto w-full max-w-[1180px] px-4 py-20 lg:px-0">
-      <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
+    <section id="contact" className="relative mx-auto w-full max-w-[1180px] px-4 py-20 lg:h-[729px] lg:px-0">
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
         {/* Left: image + info */}
         <div className="flex flex-col gap-8">
-          {/* Image */}
-          <div className="relative h-[300px] overflow-hidden rounded-[12px] lg:h-[380px]">
+          {/* Image with dotted grid overlay */}
+          <div className="relative h-[300px] overflow-hidden rounded-[12px] lg:h-[360px]">
             <img
               src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=700&auto=format&fit=crop"
               alt="Team collaboration"
               className="h-full w-full object-cover"
             />
+            {/* Dark gradient fade */}
             <div
-              className="absolute inset-0 rounded-[12px]"
+              className="absolute inset-0"
               style={{
                 backgroundImage:
-                  "linear-gradient(180deg, transparent 50%, rgba(13,13,25,0.85) 100%)",
+                  "linear-gradient(180deg, transparent 40%, rgba(13,13,25,0.8) 100%)",
+              }}
+            />
+            {/* Dotted grid pattern — bottom-right corner */}
+            <div
+              className="pointer-events-none absolute bottom-0 right-0 h-[140px] w-[200px]"
+              style={{
+                backgroundImage:
+                  "radial-gradient(circle, rgba(255,255,255,0.35) 1px, transparent 1px)",
+                backgroundSize: "14px 14px",
+                maskImage:
+                  "linear-gradient(135deg, transparent 30%, rgba(0,0,0,0.8) 70%)",
+                WebkitMaskImage:
+                  "linear-gradient(135deg, transparent 30%, rgba(0,0,0,0.8) 70%)",
               }}
             />
           </div>
@@ -58,15 +72,15 @@ const HomeContact = () => {
             </p>
 
             {/* Contact details */}
-            <div className="flex flex-col gap-2 mt-2">
+            <div className="mt-1 flex flex-col gap-3">
               <a
                 href="mailto:hr@devsorb.com"
-                className="flex items-center gap-2 text-[14px] text-[rgba(255,255,255,0.55)] hover:text-[var(--accent-primary)] transition-colors"
+                className="flex items-center gap-2.5 text-[14px] text-[rgba(255,255,255,0.55)] transition-colors hover:text-[var(--accent-primary)]"
                 style={{ fontFamily: "var(--font-poppins-stack)" }}
               >
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
-                  <path d="M4 4h16v16H4V4z" stroke="currentColor" strokeWidth="1.5" />
-                  <path d="M4 4l8 9 8-9" stroke="currentColor" strokeWidth="1.5" />
+                  <rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" strokeWidth="1.5" />
+                  <path d="M2 7l10 7 10-7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                 </svg>
                 hr@devsorb.com
               </a>
@@ -74,14 +88,12 @@ const HomeContact = () => {
                 href="https://www.devsorb.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-[14px] text-[rgba(255,255,255,0.55)] hover:text-[var(--accent-primary)] transition-colors"
+                className="flex items-center gap-2.5 text-[14px] text-[rgba(255,255,255,0.55)] transition-colors hover:text-[var(--accent-primary)]"
                 style={{ fontFamily: "var(--font-poppins-stack)" }}
               >
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
                   <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.5" />
-                  <path d="M12 3c-2.5 3-4 5.5-4 9s1.5 6 4 9" stroke="currentColor" strokeWidth="1.5" />
-                  <path d="M12 3c2.5 3 4 5.5 4 9s-1.5 6-4 9" stroke="currentColor" strokeWidth="1.5" />
-                  <path d="M3 12h18" stroke="currentColor" strokeWidth="1.5" />
+                  <path d="M3 12h18M12 3c-2.5 3-4 5.5-4 9s1.5 6 4 9M12 3c2.5 3 4 5.5 4 9s-1.5 6-4 9" stroke="currentColor" strokeWidth="1.5" />
                 </svg>
                 www.devsorb.com
               </a>
@@ -89,21 +101,28 @@ const HomeContact = () => {
           </div>
         </div>
 
-        {/* Right: form */}
-        <div className="flex flex-col gap-6">
+        {/* Right: form card */}
+        <div
+          className="rounded-[16px] border border-[rgba(255,255,255,0.15)] px-7 py-8"
+          style={{
+            backgroundImage:
+              "linear-gradient(180deg, #0d0d19 0%, #221158 49%, #0d0d19 100%)",
+            boxShadow: "0 4px 40px rgba(255,255,255,0.04)",
+          }}
+        >
           <h2
-            className="text-[28px] font-bold leading-[1.2] text-[var(--text-headline)] md:text-[36px]"
-            style={{ fontFamily: "var(--font-display)" }}
+            className="mb-6 text-[24px] font-medium leading-[1.2] tracking-[-0.5px] text-[var(--text-headline)] md:text-[30px]"
+            style={{ fontFamily: "var(--font-poppins-stack)" }}
           >
             Ready to Get Started?
           </h2>
 
           <form
-            className="flex flex-col gap-4"
+            className="flex flex-col gap-[14px]"
             onSubmit={(e) => e.preventDefault()}
           >
             {/* Name row */}
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-[14px] sm:grid-cols-2">
               <FormField
                 label="First Name"
                 name="firstName"
@@ -138,21 +157,21 @@ const HomeContact = () => {
             />
 
             {/* Message */}
-            <div className="flex flex-col gap-1.5">
-              <textarea
-                name="message"
-                value={form.message}
-                onChange={handleChange}
-                placeholder="Message"
-                rows={4}
-                className="w-full resize-none rounded-[6px] border border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.04)] px-4 py-3 text-[14px] text-white placeholder-[rgba(255,255,255,0.3)] outline-none transition-colors focus:border-[rgba(171,145,234,0.5)]"
-                style={{ fontFamily: "var(--font-poppins-stack)" }}
-              />
-            </div>
+            <textarea
+              name="message"
+              value={form.message}
+              onChange={handleChange}
+              placeholder="Message"
+              rows={4}
+              className="w-full resize-none rounded-[5px] border border-white/20 bg-white/5 px-[14px] py-3 text-[14px] text-white placeholder-white/60 outline-none transition-colors focus:border-white/40"
+              style={{ fontFamily: "var(--font-poppins-stack)" }}
+            />
 
-            <Button variant="primary" size="sm" type="submit" className="w-fit">
-              Get In Touch
-            </Button>
+            <div className="mt-1">
+              <Button variant="primary" size="sm" type="submit" className="w-fit">
+                Get In Touch
+              </Button>
+            </div>
           </form>
         </div>
       </div>
@@ -175,18 +194,16 @@ const FormField = ({
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder: string;
 }) => (
-  <div className="flex flex-col gap-1.5">
-    <input
-      type={type}
-      name={name}
-      value={value}
-      onChange={onChange}
-      placeholder={placeholder}
-      aria-label={label}
-      className="w-full rounded-[6px] border border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.04)] px-4 py-3 text-[14px] text-white placeholder-[rgba(255,255,255,0.3)] outline-none transition-colors focus:border-[rgba(171,145,234,0.5)]"
-      style={{ fontFamily: "var(--font-poppins-stack)" }}
-    />
-  </div>
+  <input
+    type={type}
+    name={name}
+    value={value}
+    onChange={onChange}
+    placeholder={placeholder}
+    aria-label={label}
+    className="w-full rounded-[5px] border border-white/20 bg-white/5 px-[14px] py-3 text-[14px] text-white placeholder-white/60 outline-none transition-colors focus:border-white/40"
+    style={{ fontFamily: "var(--font-poppins-stack)" }}
+  />
 );
 
 export default HomeContact;

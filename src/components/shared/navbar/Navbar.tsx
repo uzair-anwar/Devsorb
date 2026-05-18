@@ -51,12 +51,12 @@ const Navbar = () => {
       className={`fixed top-0 right-0 left-0 z-[100] transition-all duration-300 ${
         scrolled
           ? "bg-[var(--bg-main-alpha-40)] py-4 backdrop-blur-md"
-          : "bg-transparent py-8"
+          : "bg-transparent py-6 lg:py-8"
       }`}
     >
-      <div className="mx-auto max-w-[73.75rem] px-4 lg:px-0">
+      <div className="mx-auto max-w-[73.75rem] px-4 lg:max-w-[1229px] lg:px-0">
         <div className="flex h-[2.5rem] items-center justify-between lg:justify-center">
-          <div className="hidden w-full items-center justify-center gap-[8rem] lg:flex">
+          <div className="hidden w-full items-center justify-center gap-[7rem] lg:flex">
             <Link href="/" className="flex shrink-0 items-center">
               <Image
                 src="/assets/logo.svg"
@@ -68,7 +68,7 @@ const Navbar = () => {
               />
             </Link>
 
-            <div className="flex h-[2rem] items-center gap-[1.9375rem]">
+            <div className="flex h-[2rem] items-center gap-6">
               {navItems.map((item) =>
                 item.hasDropdown ? (
                   <div
@@ -158,7 +158,7 @@ const Navbar = () => {
               <Button
                 variant="primary"
                 size="sm"
-                className="cursor-pointer whitespace-nowrap"
+                className="h-10 w-[135px] cursor-pointer whitespace-nowrap px-0"
               >
                 Get In Touch
               </Button>
@@ -170,9 +170,10 @@ const Navbar = () => {
               <Image
                 src="/assets/logo.svg"
                 alt="Devsorb"
-                width={120}
-                height={28}
-                className="h-[1.75rem] w-auto object-contain"
+                width={66}
+                height={16}
+                className="h-4 w-auto object-contain sm:h-[2.0625rem]"
+                style={{ width: "auto" }}
               />
             </Link>
 

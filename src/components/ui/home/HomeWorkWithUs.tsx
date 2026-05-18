@@ -58,9 +58,14 @@ const MockupIllustration = ({ type }: { type: string }) => {
           <span className="h-2.5 w-2.5 rounded-full bg-[rgba(255,255,255,0.15)]" />
           <div className="ml-2 h-4 flex-1 rounded-sm bg-[rgba(255,255,255,0.06)]" />
         </div>
+        {/* Chart header */}
+        <div className="mb-2 flex items-center justify-between px-2">
+          <span className="text-[9px] font-semibold text-[rgba(255,255,255,0.7)]">Performance</span>
+          <div className="h-3 w-14 rounded-sm bg-[rgba(255,255,255,0.06)]" />
+        </div>
         {/* Chart bars */}
-        <div className="flex items-end gap-2 h-20 px-2">
-          {[40, 60, 35, 75, 55, 80, 65].map((h, i) => (
+        <div className="flex items-end gap-1.5 h-16 px-2">
+          {[40, 60, 35, 75, 55, 80, 65, 70].map((h, i) => (
             <div
               key={i}
               className="flex-1 rounded-t"
@@ -72,8 +77,8 @@ const MockupIllustration = ({ type }: { type: string }) => {
           ))}
         </div>
         <div className="mt-2 flex justify-between px-2">
-          {["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"].map((m) => (
-            <span key={m} className="text-[8px] text-[rgba(255,255,255,0.3)]">{m}</span>
+          {["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"].map((m) => (
+            <span key={m} className="text-[7px] text-[rgba(255,255,255,0.3)]">{m}</span>
           ))}
         </div>
       </div>
@@ -106,7 +111,7 @@ const MockupIllustration = ({ type }: { type: string }) => {
 
 const HomeWorkWithUs = () => {
   return (
-    <section className="relative mx-auto w-full max-w-[1180px] px-4 py-20 lg:px-0">
+    <section className="relative mx-auto w-full max-w-[1180px] px-4 py-20 lg:h-[673px] lg:px-0">
       {/* Label + heading */}
       <div className="mb-14 flex flex-col items-center gap-3 text-center">
         <div className="flex items-center gap-3">

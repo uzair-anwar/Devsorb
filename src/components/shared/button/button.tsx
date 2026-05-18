@@ -26,7 +26,7 @@ const Button: FC<ButtonProps> = ({
 
   const variants = {
     primary:
-      "cursor-pointer rounded-[4px] border border-[var(--text-headline)] font-medium text-[var(--text-headline)] shadow-none transition-transform duration-300 ease-out",
+      "cursor-pointer rounded-[6px] border border-white/10 font-medium text-[var(--text-headline)] transition-transform duration-300 ease-out",
     secondary:
       "bg-[var(--white)]/10 text-[var(--text-headline)] backdrop-blur-md hover:bg-[var(--white)]/20 border border-[var(--white)]/10 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]",
     outline:
@@ -45,7 +45,11 @@ const Button: FC<ButtonProps> = ({
 
   const primaryStyle: CSSProperties = {
     fontFamily: "var(--font-jakarta)",
-    backgroundColor: variant === "primary" ? "var(--bg-surface)" : undefined,
+    backgroundColor: variant === "primary" ? "#190c40" : undefined,
+    boxShadow: variant === "primary"
+      ? "0 2px 4px rgba(115,82,221,0.13)"
+      : undefined,
+    backdropFilter: variant === "primary" ? "blur(1.5px)" : undefined,
     ...style,
   };
 
@@ -57,25 +61,13 @@ const Button: FC<ButtonProps> = ({
     >
       {variant === "primary" && (
         <>
-          {/* Base Layer: Shimmer Streak (Hides on hover) */}
-          <span
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 opacity-100 transition-opacity duration-500 group-hover:opacity-0"
-            style={{
-              backgroundImage:
-                "linear-gradient(137.03deg, var(--bg-surface) 25.862%, var(--bg-surface) 35.9%, var(--accent-primary) 45.092%, var(--bg-surface) 60.3%, var(--bg-surface) 67.588%)",
-              backgroundSize: "160% 160%",
-              backgroundPosition: "50% 50%",
-            }}
-          />
-
           {/* Hover Layer: Vibrant Glow (Shows on hover) */}
           <span
             aria-hidden="true"
             className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
             style={{
               backgroundImage:
-                "linear-gradient(315deg, var(--accent-primary) 10%, var(--bg-surface) 30%)",
+                "linear-gradient(315deg, var(--accent-primary) 10%, #190c40 30%)",
             }}
           />
 
@@ -89,6 +81,16 @@ const Button: FC<ButtonProps> = ({
             style={{
               boxShadow:
                 "inset 0 0 0 1px var(--white-alpha-22), inset 0 6px 8px var(--white-alpha-4)",
+            }}
+          />
+
+          {/* Permanent: gradient border (top-lit) + inner purple glow */}
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 rounded-[inherit]"
+            style={{
+              boxShadow:
+                "inset 0 1px 0 rgba(255,255,255,0.50), inset 0 -1px 0 rgba(255,255,255,0.08), inset 1px 0 0 rgba(255,255,255,0.12), inset -1px 0 0 rgba(255,255,255,0.12), inset 0 0 8px rgba(115,82,221,0.43), inset 0 0 14px rgba(88,42,255,0.32)",
             }}
           />
         </>

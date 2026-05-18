@@ -54,13 +54,13 @@ const socialLinks = [
 const Footer = () => {
   return (
     <footer
-      className="relative"
+      className="relative lg:h-[349px] lg:overflow-hidden"
       style={{
         backgroundImage:
-          "linear-gradient(180deg, rgba(13,13,25,0) 0%, rgba(34,17,88,0.6) 100%)",
+          "linear-gradient(180deg, rgba(55,35,140,0.38) 0%, rgba(18,10,52,0.96) 100%)",
       }}
     >
-      <div className="mx-auto max-w-[1180px] px-4 py-16 lg:px-0">
+      <div className="mx-auto max-w-[1180px] px-4 py-16 lg:px-0 lg:py-6">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
           {/* Quick Links */}
           <div className="flex flex-col gap-5">
