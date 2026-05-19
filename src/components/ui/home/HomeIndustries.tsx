@@ -4,35 +4,35 @@ const industries = [
     description:
       "We deliver HIPAA-compliant EMR systems, telemedicine apps, and appointment solutions built for clinics and hospitals. Integrate with medical devices, insurance APIs, and ETL pipelines for efficient data management and interoperability. Improve patient engagement and automate critical workflows for better care delivery. Modernize healthcare operations with tailored digital solutions for providers.",
     image:
-      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&auto=format&fit=crop",
+      "assets/home_healthcare.png",
   },
   {
     title: "Banking & Fintech",
     description:
       "We develop secure digital banking apps, payment gateways, and KYC onboarding systems for banks and fintech companies. Integrate blockchain, lending platforms, and analytics tools to optimize your workflows and meet compliance. Enhance user experience with automation, real-time data, and seamless API integrations. Transform your finance operations with custom fintech software development.",
     image:
-      "https://images.unsplash.com/photo-1642790106117-e829e14a795f?w=600&auto=format&fit=crop",
+      "assets/home_banking.png",
   },
   {
     title: "Education",
     description:
       "We build learning management systems, virtual classrooms, and digital assessment tools for schools, universities, and edtech startups. Integrate with PowerSchool, Canvas, Google Classroom, and other platforms to fit your environment. Enable real-time collaboration, analytics, and secure data management for your students and staff. Modernize teaching and learning with custom software development for education.",
     image:
-      "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&auto=format&fit=crop",
+      "assets/home_education.png",
   },
   {
     title: "Retail & E-commerce",
     description:
       "We design and develop secure e-commerce websites, inventory management systems, and mobile shopping apps tailored to your business. Connect your store with payment gateways, ERP, CRM, and third-party platforms for end-to-end efficiency. Boost conversions using AI-based recommendations and frictionless checkout experiences. Achieve omni-channel retail success with custom, scalable technology solutions.",
     image:
-      "https://images.unsplash.com/photo-1491897554428-130a60dd4757?w=600&auto=format&fit=crop",
+      "assets/home_retail.png",
   },
   {
     title: "Travel & Hospitality",
     description:
       "We develop custom booking engines, hotel management systems, and travel apps for hotels, airlines, and agencies. Integrate your existing tools with CRM, payment gateways, and marketing platforms for smoother operations. Add value with AI-powered features and automated workflows designed for your business. Streamline guest experiences and drive more bookings with our scalable travel technology services.",
     image:
-      "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&auto=format&fit=crop",
+      "assets/home_travel.png",
   },
 ];
 

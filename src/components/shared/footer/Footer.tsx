@@ -54,13 +54,12 @@ const socialLinks = [
 const Footer = () => {
   return (
     <footer
-      className="relative lg:h-[349px] lg:overflow-hidden"
+      className="relative"
       style={{
-        backgroundImage:
-          "linear-gradient(180deg, rgba(55,35,140,0.38) 0%, rgba(18,10,52,0.96) 100%)",
+        background: "linear-gradient(180deg, #221158 0%, #0d0d19 100%)",
       }}
     >
-      <div className="mx-auto max-w-[1180px] px-4 py-16 lg:px-0 lg:py-6">
+      <div className="mx-auto max-w-[1180px] px-4 py-16 lg:px-0 lg:py-12">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
           {/* Quick Links */}
           <div className="flex flex-col gap-5">
@@ -162,7 +161,7 @@ const Footer = () => {
         {/* Bottom bar */}
         <div className="mt-12 border-t border-[rgba(255,255,255,0.07)] pt-6">
           <p
-            className="text-center text-[12px] text-[rgba(255,255,255,0.3)]"
+            className="text-center text-[12px] text-[rgba(255,255,255,0.45)]"
             style={{ fontFamily: "var(--font-poppins-stack)" }}
           >
             Copyright © 2024 Devsorb All rights reserved.
