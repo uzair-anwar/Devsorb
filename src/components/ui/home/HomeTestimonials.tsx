@@ -111,7 +111,7 @@ const HomeTestimonials = () => {
   });
 
   return (
-    <section className="relative mx-auto w-full max-w-[1300px] overflow-hidden px-4 py-24 lg:h-[718px] lg:max-w-[699px] lg:px-0 lg:py-0">
+    <section className="relative mx-auto w-full max-w-[1300px] overflow-hidden px-4 py-24 lg:h-[618px] lg:max-w-[699px] lg:px-0 lg:py-0">
       {/* Globe background */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
         <img

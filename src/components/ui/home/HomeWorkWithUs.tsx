@@ -21,7 +21,7 @@ const engagements = [
 
 const HomeWorkWithUs = () => {
   return (
-    <section className="relative mx-auto w-full max-w-[1180px] px-4 py-20 lg:h-[673px] lg:px-0">
+    <section className="relative mx-auto w-full max-w-[1172px] px-4 py-20 lg:h-[673px] lg:px-0 lg:py-0">
       {/* Label + heading */}
       <div className="mb-14 flex flex-col items-center gap-3 text-center">
         <div className="flex items-center gap-3">
@@ -43,18 +43,18 @@ const HomeWorkWithUs = () => {
       </div>
 
       {/* Cards */}
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-3 lg:gap-4">
         {engagements.map((eng) => (
           <div
             key={eng.title}
-            className="flex flex-col overflow-hidden rounded-[12px] border border-[rgba(255,255,255,0.07)]"
+            className="flex min-h-[449px] flex-col overflow-hidden rounded-[16px] border border-[rgba(59,68,154,0.75)]"
             style={{
               backgroundImage:
-                "linear-gradient(180deg, rgba(34,17,88,0.4) 0%, rgba(13,13,25,0.95) 100%)",
+                "linear-gradient(180deg, rgba(34,17,88,0) 0%, #221158 100%), linear-gradient(180deg, #0d0d19 0%, #0d0d19 100%)",
             }}
           >
             {/* Image area */}
-            <div className="h-[200px] overflow-hidden border-b border-[rgba(255,255,255,0.07)]">
+            <div className="h-[220px] overflow-hidden border-b border-[rgba(255,255,255,0.07)]">
               <img
                 src={eng.image}
                 alt={eng.title}
@@ -63,7 +63,7 @@ const HomeWorkWithUs = () => {
             </div>
 
             {/* Text */}
-            <div className="flex flex-col gap-3 p-6">
+            <div className="flex flex-col gap-3 px-[22px] py-8">
               <h3
                 className="text-[16px] font-semibold leading-[1.3] text-[var(--text-headline)]"
                 style={{ fontFamily: "var(--font-poppins-stack)" }}

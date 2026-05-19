@@ -56,11 +56,11 @@ const Footer = () => {
     <footer
       className="relative"
       style={{
-        background: "linear-gradient(180deg, #221158 0%, #0d0d19 100%)",
+        background: "linear-gradient(180deg, rgba(34,17,88,0) 0%, #221158 100%)",
       }}
     >
-      <div className="mx-auto max-w-[1180px] px-4 py-16 lg:px-0 lg:py-12">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
+      <div className="mx-auto max-w-[1172px] px-4 py-16 lg:h-[348.6px] lg:px-0 lg:py-6">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-3 lg:h-[229px] lg:grid-cols-[127px_94px_151px] lg:gap-[247px]">
           {/* Quick Links */}
           <div className="flex flex-col gap-5">
             <h4
@@ -159,9 +159,9 @@ const Footer = () => {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12 border-t border-[rgba(255,255,255,0.07)] pt-6">
+        <div className="mt-12 border-t border-[#a3a3a8] pt-8 lg:mt-6">
           <p
-            className="text-center text-[12px] text-[rgba(255,255,255,0.45)]"
+            className="text-center text-[14px] leading-[14px] text-white"
             style={{ fontFamily: "var(--font-poppins-stack)" }}
           >
             Copyright © 2024 Devsorb All rights reserved.

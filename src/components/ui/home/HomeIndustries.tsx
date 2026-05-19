@@ -4,7 +4,7 @@ const industries = [
     description:
       "We deliver HIPAA-compliant EMR systems, telemedicine apps, and appointment solutions built for clinics and hospitals. Integrate with medical devices, insurance APIs, and ETL pipelines for efficient data management and interoperability. Improve patient engagement and automate critical workflows for better care delivery. Modernize healthcare operations with tailored digital solutions for providers.",
     image:
-      "assets/home_healthcare.png",
+      "assets/home_healthCare.png",
   },
   {
     title: "Banking & Fintech",
@@ -41,7 +41,7 @@ const HomeIndustries = () => {
   const bottomTwo = industries.slice(3);
 
   return (
-    <section className="relative mx-auto w-full max-w-[1180px] px-4 py-20 lg:h-[1328px] lg:px-0">
+    <section className="relative mx-auto w-full max-w-[1172px] px-4 py-20 lg:h-[1328px] lg:px-0 lg:py-0">
       {/* Label + heading */}
       <div className="mb-14 flex flex-col items-center gap-3 text-center">
         <div className="flex items-center gap-3">
@@ -63,14 +63,14 @@ const HomeIndustries = () => {
       </div>
 
       {/* Top row: 3 cards */}
-      <div className="mb-5 grid grid-cols-1 gap-5 md:grid-cols-3">
+      <div className="mb-4 grid grid-cols-1 gap-5 md:grid-cols-3 lg:gap-4">
         {topThree.map((ind) => (
           <IndustryCard key={ind.title} {...ind} />
         ))}
       </div>
 
       {/* Bottom row: 2 cards centered */}
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:gap-4">
         {bottomTwo.map((ind) => (
           <IndustryCard key={ind.title} {...ind} />
         ))}
@@ -88,7 +88,7 @@ const IndustryCard = ({
   description: string;
   image: string;
 }) => (
-  <div className="flex flex-col gap-4 overflow-hidden rounded-[12px] border border-[rgba(100,80,200,0.22)] bg-[rgba(18,10,52,0.95)]">
+  <div className="flex h-full flex-col gap-4 overflow-hidden rounded-[16px] border border-[rgba(59,68,154,0.75)] bg-[#0d0d19] bg-[linear-gradient(180deg,rgba(34,17,88,0)_0%,#221158_100%)] md:min-h-[508px]">
     {/* Text content */}
     <div className="flex flex-col gap-3 px-6 pt-6">
       <h3
