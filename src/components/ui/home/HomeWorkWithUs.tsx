@@ -3,111 +3,21 @@ const engagements = [
     title: "IT Staff Augmentation",
     description:
       "Quickly scale your team with our IT staff augmentation services. We provide skilled software developers, QA engineers, and technology experts who integrate smoothly with your workflow.",
-    mockup: "staff",
+    image: "/assets/home_it.png",
   },
   {
     title: "Launch & Scale Support",
     description:
       "Accelerate your product launch and business growth with our expert launch and scale support. Our team helps you plan, deploy, and optimize your digital platforms from day one.",
-    mockup: "launch",
+    image: "/assets/home_launch.png",
   },
   {
     title: "Built for You Teams",
     description:
       "Get a dedicated team of developers, designers, and project managers focused on your goals. We handle everything from planning to delivery, using agile methods and strict quality control.",
-    mockup: "team",
+    image: "/assets/home_teams.png",
   },
 ];
-
-const MockupIllustration = ({ type }: { type: string }) => {
-  if (type === "staff") {
-    return (
-      <div className="relative h-full w-full overflow-hidden rounded-t-[8px] bg-[#0f0a24] p-4">
-        {/* Browser chrome */}
-        <div className="mb-3 flex items-center gap-1.5">
-          <span className="h-2.5 w-2.5 rounded-full bg-[rgba(255,255,255,0.15)]" />
-          <span className="h-2.5 w-2.5 rounded-full bg-[rgba(255,255,255,0.15)]" />
-          <span className="h-2.5 w-2.5 rounded-full bg-[rgba(255,255,255,0.15)]" />
-          <div className="ml-2 h-4 flex-1 rounded-sm bg-[rgba(255,255,255,0.06)]" />
-        </div>
-        {/* Table skeleton */}
-        <div className="flex flex-col gap-2">
-          <div className="flex gap-2">
-            {["Name", "Role", "Status", "Rate"].map((h) => (
-              <div key={h} className="h-5 flex-1 rounded bg-[rgba(171,145,234,0.15)] px-1 text-[9px] font-medium text-[rgba(255,255,255,0.4)] flex items-center">{h}</div>
-            ))}
-          </div>
-          {[...Array(4)].map((_, i) => (
-            <div key={i} className="flex gap-2">
-              <div className="h-5 flex-1 rounded bg-[rgba(255,255,255,0.04)]" />
-              <div className="h-5 flex-1 rounded bg-[rgba(255,255,255,0.04)]" />
-              <div className="h-5 w-12 rounded bg-[rgba(171,145,234,0.2)]" />
-              <div className="h-5 flex-1 rounded bg-[rgba(255,255,255,0.04)]" />
-            </div>
-          ))}
-        </div>
-      </div>
-    );
-  }
-  if (type === "launch") {
-    return (
-      <div className="relative h-full w-full overflow-hidden rounded-t-[8px] bg-[#0f0a24] p-4">
-        <div className="mb-3 flex items-center gap-1.5">
-          <span className="h-2.5 w-2.5 rounded-full bg-[rgba(255,255,255,0.15)]" />
-          <span className="h-2.5 w-2.5 rounded-full bg-[rgba(255,255,255,0.15)]" />
-          <span className="h-2.5 w-2.5 rounded-full bg-[rgba(255,255,255,0.15)]" />
-          <div className="ml-2 h-4 flex-1 rounded-sm bg-[rgba(255,255,255,0.06)]" />
-        </div>
-        {/* Chart header */}
-        <div className="mb-2 flex items-center justify-between px-2">
-          <span className="text-[9px] font-semibold text-[rgba(255,255,255,0.7)]">Performance</span>
-          <div className="h-3 w-14 rounded-sm bg-[rgba(255,255,255,0.06)]" />
-        </div>
-        {/* Chart bars */}
-        <div className="flex items-end gap-1.5 h-16 px-2">
-          {[40, 60, 35, 75, 55, 80, 65, 70].map((h, i) => (
-            <div
-              key={i}
-              className="flex-1 rounded-t"
-              style={{
-                height: `${h}%`,
-                backgroundImage: "linear-gradient(180deg, rgba(171,145,234,0.8) 0%, rgba(34,17,88,0.5) 100%)",
-              }}
-            />
-          ))}
-        </div>
-        <div className="mt-2 flex justify-between px-2">
-          {["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"].map((m) => (
-            <span key={m} className="text-[7px] text-[rgba(255,255,255,0.3)]">{m}</span>
-          ))}
-        </div>
-      </div>
-    );
-  }
-  return (
-    <div className="relative h-full w-full overflow-hidden rounded-t-[8px] bg-[#0f0a24] p-4">
-      <div className="mb-3 flex items-center gap-1.5">
-        <span className="h-2.5 w-2.5 rounded-full bg-[rgba(255,255,255,0.15)]" />
-        <span className="h-2.5 w-2.5 rounded-full bg-[rgba(255,255,255,0.15)]" />
-        <span className="h-2.5 w-2.5 rounded-full bg-[rgba(255,255,255,0.15)]" />
-        <div className="ml-2 h-4 flex-1 rounded-sm bg-[rgba(255,255,255,0.06)]" />
-      </div>
-      {/* Sprint board skeleton */}
-      <div className="grid grid-cols-3 gap-2">
-        {["Todo", "In Progress", "Done"].map((col) => (
-          <div key={col} className="flex flex-col gap-1.5">
-            <div className="h-4 rounded bg-[rgba(171,145,234,0.15)] px-1 flex items-center">
-              <span className="text-[8px] text-[rgba(255,255,255,0.4)]">{col}</span>
-            </div>
-            {[...Array(3)].map((_, i) => (
-              <div key={i} className="h-8 rounded bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.05)]" />
-            ))}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
 
 const HomeWorkWithUs = () => {
   return (
@@ -117,7 +27,7 @@ const HomeWorkWithUs = () => {
         <div className="flex items-center gap-3">
           <span className="h-px w-8 bg-[rgba(255,255,255,0.2)]" />
           <span
-            className="text-[12px] font-medium uppercase tracking-[0.18em] text-[rgba(255,255,255,0.45)]"
+            className="text-[12px] font-medium tracking-[0.12em] text-[rgba(255,255,255,0.45)]"
             style={{ fontFamily: "var(--font-poppins-stack)" }}
           >
             Flexibility
@@ -143,9 +53,13 @@ const HomeWorkWithUs = () => {
                 "linear-gradient(180deg, rgba(34,17,88,0.4) 0%, rgba(13,13,25,0.95) 100%)",
             }}
           >
-            {/* Mockup area */}
-            <div className="h-[160px] border-b border-[rgba(255,255,255,0.07)]">
-              <MockupIllustration type={eng.mockup} />
+            {/* Image area */}
+            <div className="h-[200px] overflow-hidden border-b border-[rgba(255,255,255,0.07)]">
+              <img
+                src={eng.image}
+                alt={eng.title}
+                className="h-full w-full object-cover"
+              />
             </div>
 
             {/* Text */}

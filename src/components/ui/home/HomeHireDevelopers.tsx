@@ -3,33 +3,29 @@ const HomeHireDevelopers = () => {
     <section className="mx-auto w-full max-w-[1180px] px-4 py-10 lg:h-[505px] lg:px-0">
       <div
         id="hire"
-        className="relative overflow-hidden rounded-[16px] px-8 py-16 text-center"
+        className="relative overflow-hidden rounded-[16px] px-8 py-20 text-center"
         style={{
-          backgroundImage:
-            "linear-gradient(135deg, #1a0a4a 0%, #221158 40%, #2d1a6e 70%, #1a0a4a 100%)",
-          border: "1px solid rgba(171,145,234,0.2)",
+          background: "linear-gradient(135deg, #09081e 0%, #130d35 50%, #09081e 100%)",
+          border: "1px solid rgba(255,255,255,0.08)",
         }}
       >
-        {/* Glow blobs */}
+        {/* Large right-side radial glow */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -left-20 -top-20 h-[300px] w-[300px] rounded-full opacity-30 blur-[100px]"
-          style={{ background: "radial-gradient(circle, #7352dd 0%, transparent 70%)" }}
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -bottom-20 -right-20 h-[300px] w-[300px] rounded-full opacity-30 blur-[100px]"
-          style={{ background: "radial-gradient(circle, #ab91ea 0%, transparent 70%)" }}
+          className="pointer-events-none absolute right-[-80px] top-1/2 h-[520px] w-[520px] -translate-y-1/2 rounded-full blur-[90px]"
+          style={{ background: "radial-gradient(circle, rgba(190,160,255,0.55) 0%, rgba(130,90,240,0.25) 45%, transparent 70%)" }}
         />
 
-        {/* Grid pattern overlay */}
+        {/* Subtle dotted pattern — right side */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 opacity-[0.04]"
+          className="pointer-events-none absolute right-0 top-0 h-full w-[280px]"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)",
-            backgroundSize: "40px 40px",
+              "radial-gradient(circle, rgba(255,255,255,0.22) 1px, transparent 1px)",
+            backgroundSize: "18px 18px",
+            maskImage: "linear-gradient(270deg, rgba(0,0,0,0.45) 0%, transparent 80%)",
+            WebkitMaskImage: "linear-gradient(270deg, rgba(0,0,0,0.45) 0%, transparent 80%)",
           }}
         />
 

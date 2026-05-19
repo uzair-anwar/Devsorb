@@ -21,54 +21,28 @@ const services = [
     title: "Custom Software Development",
     description: "Bespoke solutions for your unique business challenges.",
     icon: (
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <rect x="3" y="3" width="10" height="10" rx="2" stroke="white" strokeWidth="1.6" />
-        <rect x="15" y="3" width="10" height="10" rx="2" stroke="rgba(171,145,234,0.9)" strokeWidth="1.6" />
-        <rect x="3" y="15" width="10" height="10" rx="2" stroke="rgba(171,145,234,0.9)" strokeWidth="1.6" />
-        <rect x="15" y="15" width="10" height="10" rx="2" stroke="white" strokeWidth="1.6" />
-      </svg>
+      <img src="/assets/home_services_custom_software_dev.png" alt="Custom Software Development" className="h-full w-full object-contain" />
     ),
   },
   {
     title: "AI & Machine Learning",
     description: "Unlock business intelligence and automation.",
     icon: (
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <circle cx="14" cy="14" r="4" stroke="white" strokeWidth="1.6" />
-        <circle cx="14" cy="4" r="2" stroke="rgba(171,145,234,0.9)" strokeWidth="1.5" />
-        <circle cx="14" cy="24" r="2" stroke="rgba(171,145,234,0.9)" strokeWidth="1.5" />
-        <circle cx="4" cy="14" r="2" stroke="rgba(171,145,234,0.9)" strokeWidth="1.5" />
-        <circle cx="24" cy="14" r="2" stroke="rgba(171,145,234,0.9)" strokeWidth="1.5" />
-        <line x1="14" y1="6" x2="14" y2="10" stroke="rgba(255,255,255,0.5)" strokeWidth="1.4" />
-        <line x1="14" y1="18" x2="14" y2="22" stroke="rgba(255,255,255,0.5)" strokeWidth="1.4" />
-        <line x1="6" y1="14" x2="10" y2="14" stroke="rgba(255,255,255,0.5)" strokeWidth="1.4" />
-        <line x1="18" y1="14" x2="22" y2="14" stroke="rgba(255,255,255,0.5)" strokeWidth="1.4" />
-      </svg>
+      <img src="/assets/home_services_AI.png" alt="AI & Machine Learning" className="h-full w-full object-contain" />
     ),
   },
   {
     title: "Blockchain Development",
     description: "Secure, scalable decentralized apps and platforms.",
     icon: (
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <rect x="10" y="2" width="8" height="6" rx="1.5" stroke="white" strokeWidth="1.6" />
-        <rect x="2" y="12" width="8" height="6" rx="1.5" stroke="rgba(171,145,234,0.9)" strokeWidth="1.5" />
-        <rect x="18" y="12" width="8" height="6" rx="1.5" stroke="rgba(171,145,234,0.9)" strokeWidth="1.5" />
-        <rect x="10" y="20" width="8" height="6" rx="1.5" stroke="white" strokeWidth="1.6" />
-        <line x1="14" y1="8" x2="14" y2="12" stroke="rgba(255,255,255,0.45)" strokeWidth="1.3" />
-        <line x1="10" y1="15" x2="6" y2="15" stroke="rgba(255,255,255,0.45)" strokeWidth="1.3" />
-        <line x1="18" y1="15" x2="22" y2="15" stroke="rgba(255,255,255,0.45)" strokeWidth="1.3" />
-        <line x1="14" y1="18" x2="14" y2="20" stroke="rgba(255,255,255,0.45)" strokeWidth="1.3" />
-      </svg>
+      <img src="/assets/home_services_blockChain.png" alt="Blockchain Development" className="h-full w-full object-contain" />
     ),
   },
   {
     title: "MVP Development",
     description: "Validate ideas and launch quicker, smarter.",
     icon: (
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <path d="M14 3L17 10H24L18.5 14.5L20.5 22L14 17.5L7.5 22L9.5 14.5L4 10H11L14 3Z" stroke="white" strokeWidth="1.6" strokeLinejoin="round" />
-      </svg>
+      <img src="/assets/home_services_mvp.png" alt="MVP Development" className="h-full w-full object-contain" />
     ),
   },
   {

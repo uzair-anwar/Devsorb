@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Button from "@/components/shared/button/button";
 
 const HomeContact = () => {
   const [form, setForm] = useState({
@@ -19,14 +18,28 @@ const HomeContact = () => {
   };
 
   return (
-    <section id="contact" className="relative mx-auto w-full max-w-[1180px] px-4 py-20 lg:h-[729px] lg:px-0">
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
-        {/* Left: image + info */}
-        <div className="flex flex-col gap-8">
+    <section id="contact" className="relative mx-auto w-full max-w-[1180px] overflow-hidden px-4 py-20 lg:px-0">
+      {/* Decorative dotted pattern — top-right section background */}
+      <div
+        className="pointer-events-none absolute right-0 top-0 h-[360px] w-[220px]"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, rgba(255,255,255,0.18) 1px, transparent 1px)",
+          backgroundSize: "16px 16px",
+          maskImage:
+            "linear-gradient(225deg, rgba(0,0,0,0.7) 20%, transparent 65%)",
+          WebkitMaskImage:
+            "linear-gradient(225deg, rgba(0,0,0,0.7) 20%, transparent 65%)",
+        }}
+      />
+
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-[6fr_7fr] lg:gap-4">
+        {/* Left: image + secondary text + contacts */}
+        <div className="flex flex-col gap-6">
           {/* Image with dotted grid overlay */}
-          <div className="relative h-[300px] overflow-hidden rounded-[12px] lg:h-[360px]">
+          <div className="relative overflow-hidden rounded-[12px] h-[300px] lg:h-[430px]">
             <img
-              src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=700&auto=format&fit=crop"
+              src="/assets/home_contact.png"
               alt="Team collaboration"
               className="h-full w-full object-cover"
             />
@@ -53,15 +66,8 @@ const HomeContact = () => {
             />
           </div>
 
-          {/* Description */}
+          {/* Secondary description + contacts */}
           <div className="flex flex-col gap-4">
-            <p
-              className="text-[15px] leading-[1.7] text-[rgba(255,255,255,0.6)]"
-              style={{ fontFamily: "var(--font-poppins-stack)" }}
-            >
-              Tell us about your idea, project, or business goals, and our team
-              will help turn them into a scalable, high performing solution.
-            </p>
             <p
               className="text-[14px] leading-[1.7] text-[rgba(255,255,255,0.45)]"
               style={{ fontFamily: "var(--font-poppins-stack)" }}
@@ -71,7 +77,6 @@ const HomeContact = () => {
               steps.
             </p>
 
-            {/* Contact details */}
             <div className="mt-1 flex flex-col gap-3">
               <a
                 href="mailto:hr@devsorb.com"
@@ -101,78 +106,92 @@ const HomeContact = () => {
           </div>
         </div>
 
-        {/* Right: form card */}
-        <div
-          className="rounded-[16px] border border-[rgba(255,255,255,0.15)] px-7 py-8"
-          style={{
-            backgroundImage:
-              "linear-gradient(180deg, #0d0d19 0%, #221158 49%, #0d0d19 100%)",
-            boxShadow: "0 4px 40px rgba(255,255,255,0.04)",
-          }}
-        >
-          <h2
-            className="mb-6 text-[24px] font-medium leading-[1.2] tracking-[-0.5px] text-[var(--text-headline)] md:text-[30px]"
+        {/* Right: primary description + form card */}
+        <div className="flex flex-col gap-4">
+          {/* Primary description above form card */}
+          <p
+            className="text-[16px] leading-[1.7] text-white lg:text-[18px]"
             style={{ fontFamily: "var(--font-poppins-stack)" }}
           >
-            Ready to Get Started?
-          </h2>
+            Tell us about your idea, project, or business goals, and our team
+            will help turn them into a scalable, high performing solution.
+          </p>
 
-          <form
-            className="flex flex-col gap-[14px]"
-            onSubmit={(e) => e.preventDefault()}
+          {/* Form card */}
+          <div
+            className="rounded-[16px] border border-[rgba(255,255,255,0.15)] px-7 py-8"
+            style={{
+              backgroundImage:
+                "linear-gradient(180deg, #0d0d19 0%, #221158 49%, #0d0d19 100%)",
+              boxShadow: "0 4px 40px rgba(255,255,255,0.04)",
+            }}
           >
-            {/* Name row */}
-            <div className="grid grid-cols-1 gap-[14px] sm:grid-cols-2">
-              <FormField
-                label="First Name"
-                name="firstName"
-                value={form.firstName}
-                onChange={handleChange}
-                placeholder="First Name"
-              />
-              <FormField
-                label="Last Name"
-                name="lastName"
-                value={form.lastName}
-                onChange={handleChange}
-                placeholder="Last Name"
-              />
-            </div>
-
-            <FormField
-              label="Email"
-              name="email"
-              type="email"
-              value={form.email}
-              onChange={handleChange}
-              placeholder="Email"
-            />
-            <FormField
-              label="Phone Number"
-              name="phone"
-              type="tel"
-              value={form.phone}
-              onChange={handleChange}
-              placeholder="Phone Number"
-            />
-
-            {/* Message */}
-            <textarea
-              name="message"
-              value={form.message}
-              onChange={handleChange}
-              placeholder="Message"
-              rows={4}
-              className="w-full resize-none rounded-[5px] border border-white/20 bg-white/5 px-[14px] py-3 text-[14px] text-white placeholder-white/60 outline-none transition-colors focus:border-white/40"
+            <h2
+              className="mb-6 text-[24px] font-semibold leading-[1.2] tracking-[-0.5px] text-[var(--text-headline)] md:text-[30px]"
               style={{ fontFamily: "var(--font-poppins-stack)" }}
-            />
+            >
+              Ready to Get Started?
+            </h2>
 
-            <div className="mt-1">
-              <Button variant="primary" size="sm" type="submit" className="w-fit">
-                Get In Touch
-              </Button>
-            </div>
-          </form>
+            <form
+              className="flex flex-col gap-[14px]"
+              onSubmit={(e) => e.preventDefault()}
+            >
+              <div className="grid grid-cols-1 gap-[14px] sm:grid-cols-2">
+                <FormField
+                  label="First Name"
+                  name="firstName"
+                  value={form.firstName}
+                  onChange={handleChange}
+                  placeholder="First Name"
+                />
+                <FormField
+                  label="Last Name"
+                  name="lastName"
+                  value={form.lastName}
+                  onChange={handleChange}
+                  placeholder="Last Name"
+                />
+              </div>
+
+              <FormField
+                label="Email"
+                name="email"
+                type="email"
+                value={form.email}
+                onChange={handleChange}
+                placeholder="Email"
+              />
+              <FormField
+                label="Phone Number"
+                name="phone"
+                type="tel"
+                value={form.phone}
+                onChange={handleChange}
+                placeholder="Phone Number"
+              />
+
+              <textarea
+                name="message"
+                value={form.message}
+                onChange={handleChange}
+                placeholder="Message"
+                rows={4}
+                className="w-full resize-none rounded-[5px] border border-white/20 bg-white/5 px-[14px] py-3 text-[14px] text-white placeholder-white/60 outline-none transition-colors focus:border-white/40"
+                style={{ fontFamily: "var(--font-poppins-stack)" }}
+              />
+
+              <div className="mt-1">
+                <button
+                  type="submit"
+                  className="inline-flex h-[40px] items-center justify-center rounded-[6px] bg-white px-5 text-[14px] font-medium text-[#0d0d19] transition-colors hover:bg-white/90"
+                  style={{ fontFamily: "var(--font-poppins-stack)" }}
+                >
+                  Get In Touch
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </section>
