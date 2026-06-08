@@ -31,14 +31,28 @@ const HomeWorkWithUs = () => {
       {/* Label + heading */}
       <div className="mb-14 flex flex-col items-center gap-3 text-center">
         <div className="flex items-center gap-3">
-          <span className="h-px w-8 bg-[rgba(255,255,255,0.2)]" />
           <span
-            className="text-[12px] font-medium tracking-[0.12em] text-[rgba(255,255,255,0.45)]"
+            aria-hidden="true"
+            className="h-[2px] w-10 shrink-0"
+            style={{
+              backgroundImage:
+                "linear-gradient(90deg, rgba(244,247,255,0) 0%, rgba(244,247,255,0.48) 100%)",
+            }}
+          />
+          <span
+            className="text-[16px] font-medium leading-4 tracking-normal text-[var(--text-headline)]"
             style={{ fontFamily: "var(--font-poppins-stack)" }}
           >
             Flexibility
           </span>
-          <span className="h-px w-8 bg-[rgba(255,255,255,0.2)]" />
+          <span
+            aria-hidden="true"
+            className="h-[2px] w-10 shrink-0"
+            style={{
+              backgroundImage:
+                "linear-gradient(90deg, rgba(244,247,255,0.48) 0%, rgba(244,247,255,0) 100%)",
+            }}
+          />
         </div>
         <h2
           className="text-[32px] font-bold leading-[1.2] text-[var(--text-headline)] md:text-[40px]"

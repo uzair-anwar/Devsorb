@@ -131,14 +131,14 @@ const HomeServices = () => {
       <div className="mb-12 flex flex-col gap-3 lg:mb-[56px] lg:h-[116px] lg:flex-row lg:items-start lg:justify-between">
         <div className="flex flex-col gap-3 lg:gap-4">
           <div className="flex items-center gap-3">
-            <span className="h-px w-8 bg-[rgba(255,255,255,0.2)]" />
+            <span className="h-px w-8 bg-gradient-to-r from-transparent to-[rgba(244,247,255,0.55)]" />
             <span
-              className="text-[12px] font-medium uppercase leading-[18px] tracking-[0.18em] text-[rgba(255,255,255,0.45)] lg:text-[16px] lg:leading-4"
+              className="text-[16px] font-medium leading-4 tracking-normal text-[var(--text-headline)]"
               style={{ fontFamily: "var(--font-poppins-stack)" }}
             >
               Services
             </span>
-            <span className="h-px w-8 bg-[rgba(255,255,255,0.2)]" />
+            <span className="h-px w-8 bg-gradient-to-l from-transparent to-[rgba(244,247,255,0.55)]" />
           </div>
           <h2
             className="max-w-[400px] text-[32px] font-bold leading-[1.2] text-[var(--text-headline)] md:text-[40px] lg:max-w-[358px] lg:text-[36px] lg:leading-[42px]"

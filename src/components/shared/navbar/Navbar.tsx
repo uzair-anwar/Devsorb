@@ -16,7 +16,7 @@ const navItems: NavItem[] = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
   { name: "Services", href: "/services", hasDropdown: true },
-  { name: "Hire Developer", href: "#hire" },
+  { name: "Hire Developer", href: "/hire-developer" },
   { name: "Success Stories", href: "#success" },
   { name: "Career", href: "#career" },
   { name: "Contact us", href: "/contact-us" },

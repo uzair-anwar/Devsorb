@@ -25,37 +25,19 @@ const HomeWhoWeAre = () => {
         {/* Text block: label + headline grouped with 16px inner gap */}
         <div className="flex flex-col items-center gap-4">
           <div className="flex items-center gap-3">
-            {/* left line + dot */}
             <span
               aria-hidden="true"
-              className="h-[5px] w-[5px] rounded-full bg-[#4F60FA]"
+              className="h-px w-8 bg-gradient-to-r from-transparent to-[rgba(244,247,255,0.55)]"
             />
             <span
-              aria-hidden="true"
-              className="h-px w-8 lg:w-12"
-              style={{
-                backgroundImage:
-                  "linear-gradient(90deg, transparent 6%, #F4F7FF 51%, transparent 91%)",
-              }}
-            />
-            <span
-              className="text-[13px] font-medium text-[#F4F7FF] md:text-[14px] lg:text-[16px]"
+              className="text-[16px] font-medium leading-4 tracking-normal text-[var(--text-headline)]"
               style={{ fontFamily: "var(--font-poppins-stack)" }}
             >
               Who We Are
             </span>
-            {/* right line + dot */}
             <span
               aria-hidden="true"
-              className="h-px w-8 lg:w-12"
-              style={{
-                backgroundImage:
-                  "linear-gradient(90deg, transparent 9%, #F4F7FF 49%, transparent 94%)",
-              }}
-            />
-            <span
-              aria-hidden="true"
-              className="h-[5px] w-[5px] rounded-full bg-[#4F60FA]"
+              className="h-px w-8 bg-gradient-to-l from-transparent to-[rgba(244,247,255,0.55)]"
             />
           </div>
 
