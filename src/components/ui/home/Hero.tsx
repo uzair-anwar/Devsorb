@@ -11,7 +11,7 @@ const Hero = () => {
   return (
     <section className="relative isolate h-[320px] overflow-hidden sm:h-[442px] lg:h-[736px]">
       <div className="pointer-events-none absolute inset-0 z-0">
-        <div className="absolute -top-[77px] -left-[50px] z-0 h-[237px] w-[325px] rounded-full bg-[var(--bg-surface)] opacity-100 blur-[60px] sm:-top-[133px] sm:-left-[87px] sm:h-[411px] sm:w-[563px] sm:blur-[103px] lg:-top-[258px] lg:-left-[169px] lg:h-[795px] lg:w-[1090px] lg:blur-[200px]" />
+        <div className="absolute -top-[77px] -left-[50px] z-0 h-[237px] w-[325px] rounded-full bg-[#221158] opacity-100 blur-[60px] sm:-top-[133px] sm:-left-[87px] sm:h-[411px] sm:w-[563px] sm:blur-[103px] lg:-top-[258px] lg:-left-[169px] lg:h-[795px] lg:w-[1090px] lg:blur-[200px]" />
         <div
           className="absolute top-[32px] left-1/2 z-[2] h-[177px] w-[350px] -translate-x-1/2 sm:top-[33px] sm:h-[264px] sm:w-[523px] lg:top-[139px] lg:h-[524px] lg:w-[1037px]"
           style={{

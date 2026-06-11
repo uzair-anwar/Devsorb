@@ -70,7 +70,7 @@ const HomeIndustries = () => {
       <div className="relative">
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute left-[148px] top-[244px] hidden h-[490px] w-[757px] rounded-full bg-[#221158] opacity-30 blur-[270px] lg:block"
+          className="pointer-events-none absolute left-[148px] top-[244px] hidden h-[490px] w-[757px] rounded-full bg-[#221158] blur-[270px] lg:block"
         />
 
         {/* Top row: 3 cards */}
@@ -108,14 +108,14 @@ const IndustryCard = ({
     }`}
     style={{
       backgroundImage:
-        "linear-gradient(135deg, rgba(59,68,154,0.85) 0%, rgba(0,3,28,0.5) 51%, rgba(59,68,154,0.85) 100%)",
+        "linear-gradient(135deg, rgba(59,68,154,0.95) 0%, rgba(59,68,154,0.26) 48%, rgba(59,68,154,0.85) 100%)",
     }}
   >
     <div
       className="absolute inset-px rounded-[15px]"
       style={{
         backgroundImage:
-          "linear-gradient(180deg, rgba(34,17,88,0) 0%, rgba(34,17,88,0.14) 58%, rgba(34,17,88,0.78) 100%)",
+          "radial-gradient(110% 74% at 16% 108%, rgba(34,17,88,0.98) 0%, rgba(34,17,88,0.78) 35%, rgba(34,17,88,0.18) 72%, rgba(34,17,88,0) 100%), linear-gradient(180deg, rgba(8,9,20,0.98) 0%, rgba(11,11,25,0.94) 48%, rgba(34,17,88,0.82) 100%)",
       }}
     />
 

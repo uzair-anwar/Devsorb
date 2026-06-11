@@ -111,7 +111,7 @@ const HomeTestimonials = () => {
   });
 
   return (
-    <section className="relative mx-auto w-full max-w-[1300px] overflow-hidden px-4 py-24 lg:h-[618px] lg:max-w-[699px] lg:px-0 lg:py-0">
+    <section className="relative mx-auto w-full max-w-[1300px] overflow-hidden px-4 py-24 lg:px-0">
       {/* Globe background */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
         <img
@@ -123,20 +123,16 @@ const HomeTestimonials = () => {
       </div>
 
       {/* Section heading */}
-      <div className="relative z-10 mb-20 flex flex-col items-center gap-4 lg:mb-[56px]">
+      <div className="relative z-10 mb-20 flex flex-col items-center gap-4">
         <div className="flex items-center gap-3">
-          <div className="relative h-px w-12 bg-gradient-to-r from-transparent via-[var(--text-headline)] to-transparent">
-            <div className="absolute -right-1 top-1/2 h-[5px] w-[5px] -translate-y-1/2 rounded-full bg-[#4f60fa] blur-[1px]" />
-          </div>
+          <span className="h-px w-8 bg-gradient-to-r from-transparent to-[rgba(244,247,255,0.55)]" />
           <span
-            className="text-[16px] font-medium leading-[16px] text-[var(--text-headline)]"
-            style={{ fontFamily: "var(--font-display)" }}
+            className="text-[16px] font-medium leading-4 tracking-normal text-[var(--text-headline)]"
+            style={{ fontFamily: "var(--font-poppins-stack)" }}
           >
             Testimonial
           </span>
-          <div className="relative h-px w-12 bg-gradient-to-r from-transparent via-[var(--text-headline)] to-transparent">
-            <div className="absolute -left-1 top-1/2 h-[5px] w-[5px] -translate-y-1/2 rounded-full bg-[#4f60fa] blur-[1px]" />
-          </div>
+          <span className="h-px w-8 bg-gradient-to-l from-transparent to-[rgba(244,247,255,0.55)]" />
         </div>
         <h2
           className="text-[36px] font-bold leading-[40px] text-[var(--text-headline)] md:text-[44px] md:leading-[48px]"
