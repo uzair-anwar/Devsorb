@@ -58,6 +58,7 @@ const Hero = () => {
             <Button
               variant="primary"
               size="sm"
+              href="/success-stories"
               className="h-[32px] px-4 text-[12px] leading-[12px] lg:h-[40px] lg:text-[16px] lg:leading-[16px]"
             >
               See Our Work

@@ -38,7 +38,7 @@ const ServiceHero = ({ title, subtitle, ctaText }: Props) => {
         >
           {subtitle}
         </p>
-        <Button variant="primary" size="sm" className="mt-2">
+        <Button variant="primary" size="sm" href="/contact-us" className="mt-2">
           {ctaText}
         </Button>
       </div>

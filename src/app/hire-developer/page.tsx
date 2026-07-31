@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/shared/navbar/Navbar";
+import Footer from "@/components/shared/footer/Footer";
 import HeroTechMarquee from "@/components/ui/home/HeroTechMarquee";
 
 export const metadata: Metadata = {
@@ -42,22 +43,6 @@ const talentCards = [
   },
 ];
 
-const serviceLinks = [
-  "Custom Software Development",
-  "AI & Machine Learning Development",
-  "Blockchain Development",
-  "Front & Backend Development",
-  "Android & iOS App Development",
-  "DevOps & Cloud Services",
-  "Software Testing Services",
-  "System Integration Services",
-  "MVP Development Services",
-  "Enterprise Software Development",
-];
-
-const quickLinks = ["Home", "About Us", "Portfolio", "Careers", "Contact"];
-const socialLinks = ["LinkedIn", "Facebook", "Instagram", "Twitter"];
-
 const primaryButtonClass =
   "inline-flex items-center justify-center whitespace-nowrap rounded-[6px] border border-[rgba(255,255,255,0.32)] bg-[#190c40] px-4 text-[12px] font-medium leading-none text-[#f4f7ff] shadow-[0_0_18px_rgba(112,82,230,0.3)] transition-colors hover:border-white/70 sm:text-[14px] lg:h-10 lg:px-4 lg:text-[16px]";
 
@@ -77,14 +62,16 @@ const HireDeveloperPage = () => {
         />
         <HireContentBlock
           eyebrow="Our Approach"
-          title="What We Help You Solve"
-          body="Build your dream team with vetted engineers ready to join your project. We provide highly skilled developers who integrate seamlessly with your workflow and deliver measurable results."
+          title="How We Help You Scale"
+          body="A simple, proven process that takes you from requirements to a fully integrated team — so you can focus on shipping while we handle the sourcing, vetting, and onboarding."
           items={approach}
           reverse
         />
         <TalentDifference />
       </div>
-      <HireFooter />
+      <div className="mt-[50px] lg:mt-[100px]">
+        <Footer />
+      </div>
     </main>
   );
 };
@@ -129,7 +116,7 @@ const HireHero = () => {
             className={`${primaryButtonClass} mt-[16px] h-8 w-[126px] lg:mt-8 lg:w-[157px]`}
             style={{ fontFamily: "var(--font-poppins-stack)" }}
           >
-            Get Start Today
+            Get Started Today
           </Link>
         </div>
       </div>
@@ -293,7 +280,7 @@ const TalentDifference = () => {
 const HireCTA = () => {
   return (
     <section
-      className="relative h-[223px] w-[563px] overflow-hidden px-[99px] py-[49px] lg:h-[534px] lg:w-full lg:px-[214px] lg:py-[106px]"
+      className="relative h-[223px] w-full overflow-hidden px-4 py-[49px] lg:h-[534px] lg:px-[214px] lg:py-[106px]"
       style={{
         backgroundImage:
           "linear-gradient(180deg, #0d0d19 0%, rgba(6,6,12,0) 50%, #0d0d19 100%), url('/assets/hireDevBackground.jpg')",
@@ -302,7 +289,7 @@ const HireCTA = () => {
       }}
     >
       <div
-        className="mx-auto flex h-[124px] w-[364px] flex-col items-center justify-center rounded-[16px] border border-white/25 px-[30px] py-4 text-center backdrop-blur-sm lg:h-[322px] lg:w-[1012px] lg:gap-[46px] lg:px-[120px] lg:py-16"
+        className="mx-auto flex h-[124px] w-full max-w-[364px] flex-col items-center justify-center rounded-[16px] border border-white/25 px-[30px] py-4 text-center backdrop-blur-sm lg:h-[322px] lg:w-[1012px] lg:max-w-none lg:gap-[46px] lg:px-[120px] lg:py-16"
         style={{
           backgroundImage:
             "linear-gradient(180deg, rgba(34,34,34,0.42) 0%, rgba(85,85,85,0.06) 100%)",
@@ -326,105 +313,8 @@ const HireCTA = () => {
   );
 };
 
-const HireFooter = () => {
-  return (
-    <footer
-      className="relative mx-auto mt-[50px] w-full lg:mt-[100px]"
-      style={{
-        background: "linear-gradient(180deg, rgba(34,17,88,0) 0%, #221158 100%)",
-      }}
-    >
-      <div className="mx-auto flex min-h-[914px] w-[min(354px,calc(100%-76px))] flex-col justify-between py-6 min-[520px]:w-[calc(100%-76px)] min-[520px]:max-w-[900px] lg:min-h-[493px] lg:w-[1176px] lg:max-w-none lg:py-10">
-        <div className="grid grid-cols-1 gap-[53px] lg:grid-cols-[260px_120px_110px_170px] lg:gap-[170px]">
-          <FooterColumn title="Services links" links={serviceLinks} />
-          <FooterColumn title="Quick Links" links={quickLinks} compact />
-          <FooterColumn title="Follow Us" links={socialLinks} icon compact />
-          <FooterColumn title="Contact" links={["Lahore, Pakistan", "hr@devsorb.com", "www.devsorb.com"]} icon compact />
-        </div>
-        <div className="border-t border-[#a3a3a8] pt-4 lg:pt-8">
-          <p
-            className="text-center text-[12px] leading-3 text-white lg:text-[14px] lg:leading-[14px]"
-            style={{ fontFamily: "var(--font-poppins-stack)" }}
-          >
-            Copyright © 2024 Devsorb All rights reserved.
-          </p>
-        </div>
-      </div>
-    </footer>
-  );
-};
 
-const FooterColumn = ({
-  title,
-  links,
-  icon = false,
-  compact = false,
-}: {
-  title: string;
-  links: string[];
-  icon?: boolean;
-  compact?: boolean;
-}) => {
-  return (
-    <div>
-      <h4
-        className="text-[14px] font-medium leading-[14px] text-white lg:text-[20px] lg:leading-5"
-        style={{ fontFamily: "var(--font-poppins-stack)" }}
-      >
-        {title}
-      </h4>
-      <ul
-        className={`flex flex-col ${
-          compact ? "mt-5 gap-[9.5px]" : "mt-6 gap-[19px]"
-        } lg:mt-6 lg:gap-[19px]`}
-      >
-        {links.map((link) => (
-          <li key={link}>
-            <a
-              href={link.includes("@") ? `mailto:${link}` : link.includes("www.") ? `https://${link}` : "#"}
-              className="flex items-center gap-2 text-[12px] leading-3 text-white transition-opacity hover:opacity-75 lg:text-[14px] lg:leading-[14px]"
-              style={{ fontFamily: "var(--font-poppins-stack)" }}
-            >
-              {icon && <FooterIcon label={link} />}
-              {link}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-};
 
-const FooterIcon = ({ label }: { label: string }) => {
-  if (label.includes("@")) {
-    return (
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="shrink-0">
-        <path d="M4 5h16v14H4V5Z" stroke="currentColor" strokeWidth="1.5" />
-        <path d="m4 6 8 7 8-7" stroke="currentColor" strokeWidth="1.5" />
-      </svg>
-    );
-  }
-
-  if (label.includes("www.")) {
-    return (
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="shrink-0">
-        <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M3 12h18M12 3c-2.5 3-4 5.5-4 9s1.5 6 4 9M12 3c2.5 3 4 5.5 4 9s-1.5 6-4 9" stroke="currentColor" strokeWidth="1.5" />
-      </svg>
-    );
-  }
-
-  if (label === "Lahore, Pakistan") {
-    return (
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="shrink-0">
-        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7Z" stroke="currentColor" strokeWidth="1.5" />
-        <circle cx="12" cy="9" r="2.5" stroke="currentColor" strokeWidth="1.5" />
-      </svg>
-    );
-  }
-
-  return <span className="h-1.5 w-1.5 rounded-full bg-white" />;
-};
 
 const TalentIcon = ({ type }: { type: string }) => {
   if (type === "screen") {

@@ -6,16 +6,19 @@ import {
   type CSSProperties,
   type ReactNode,
 } from "react";
+import Link from "next/link";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary" | "outline" | "ghost";
   size?: "xs" | "sm" | "md" | "lg" | "xl";
+  href?: string;
   children: ReactNode;
 }
 
 const Button: FC<ButtonProps> = ({
   variant = "primary",
   size = "md",
+  href,
   children,
   className = "",
   style,
@@ -53,12 +56,10 @@ const Button: FC<ButtonProps> = ({
     ...style,
   };
 
-  return (
-    <button
-      className={`group ${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
-      style={primaryStyle}
-      {...props}
-    >
+  const composedClassName = `group ${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`;
+
+  const inner = (
+    <>
       {variant === "primary" && (
         <>
           {/* Hover Layer: Vibrant Glow (Shows on hover) */}
@@ -97,6 +98,29 @@ const Button: FC<ButtonProps> = ({
       )}
 
       <span className="relative z-10">{children}</span>
+    </>
+  );
+
+  if (href) {
+    return (
+      <Link
+        href={href}
+        className={composedClassName}
+        style={primaryStyle}
+        onClick={props.onClick as unknown as React.MouseEventHandler<HTMLAnchorElement>}
+      >
+        {inner}
+      </Link>
+    );
+  }
+
+  return (
+    <button
+      className={composedClassName}
+      style={primaryStyle}
+      {...props}
+    >
+      {inner}
     </button>
   );
 };

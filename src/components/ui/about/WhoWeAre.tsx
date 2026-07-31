@@ -1,9 +1,9 @@
 const stats = [
-  { value: "1 +", label: "", sublabel: "Years of Client Relationship" },
-  { value: "10 %", label: "", sublabel: "Customer Satisfaction" },
-  { value: "100 +", label: "", sublabel: "Projects Delivered" },
+  { value: "7+", label: "", sublabel: "Years of Client Relationship" },
+  { value: "97%", label: "", sublabel: "Customer Satisfaction" },
+  { value: "200+", label: "", sublabel: "Projects Delivered" },
   { value: "1M+", label: "", sublabel: "Hours Augmented" },
-  { value: "180 +", label: "", sublabel: "Lives Impacted" },
+  { value: "275+", label: "", sublabel: "Lives Impacted" },
 ];
 
 const cards = [
