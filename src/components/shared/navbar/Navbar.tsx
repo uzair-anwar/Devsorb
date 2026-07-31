@@ -17,7 +17,7 @@ const navItems: NavItem[] = [
   { name: "About", href: "/about" },
   { name: "Services", href: "/services", hasDropdown: true },
   { name: "Hire Developer", href: "/hire-developer" },
-  { name: "Success Stories", href: "#success" },
+  { name: "Success Stories", href: "/success-stories" },
   { name: "Career", href: "#career" },
   { name: "Contact us", href: "/contact-us" },
 ];
@@ -158,6 +158,7 @@ const Navbar = () => {
               <Button
                 variant="primary"
                 size="sm"
+                href="/contact-us"
                 className="h-10 w-[135px] cursor-pointer whitespace-nowrap px-0"
               >
                 Get In Touch
@@ -317,6 +318,7 @@ const Navbar = () => {
               <Button
                 variant="primary"
                 size="lg"
+                href="/contact-us"
                 className="!w-full cursor-pointer"
                 onClick={() => setIsOpen(false)}
               >

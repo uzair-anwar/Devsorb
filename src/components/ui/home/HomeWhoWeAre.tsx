@@ -52,7 +52,7 @@ const HomeWhoWeAre = () => {
         </div>
 
         {/* Read More */}
-        <Button variant="primary" size="sm">
+        <Button variant="primary" size="sm" href="/about">
           Read More
         </Button>
 

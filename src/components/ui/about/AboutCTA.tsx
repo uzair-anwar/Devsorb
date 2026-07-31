@@ -1,4 +1,4 @@
-import Button from "@/components/shared/button/button";
+import Link from "next/link";
 
 const AboutCTA = () => {
   return (
@@ -29,12 +29,13 @@ const AboutCTA = () => {
             <br />
             build something great together.
           </h2>
-          <button
-            className="h-[40px] rounded-[8px] border border-[#020a18] bg-[var(--text-headline)] px-4 py-[10px] text-[16px] font-medium leading-[16px] text-[#150544] shadow-[0px_0px_8px_rgba(57,115,233,0.25)]"
+          <Link
+            href="/contact-us"
+            className="inline-flex h-[40px] items-center justify-center rounded-[8px] border border-[#020a18] bg-[var(--text-headline)] px-4 py-[10px] text-[16px] font-medium leading-[16px] text-[#150544] shadow-[0px_0px_8px_rgba(57,115,233,0.25)] transition-colors hover:bg-white"
             style={{ fontFamily: "var(--font-display)" }}
           >
             Start A Project
-          </button>
+          </Link>
         </div>
       </div>
     </section>

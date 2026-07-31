@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 
-const titleToSlug: Record<string, string> = {
+export const titleToSlug: Record<string, string> = {
   "Custom Software Development": "custom-software-development",
   "AI & Machine Learning": "ai-machine-learning-development",
   "Blockchain Development": "blockchain-development",
@@ -16,7 +16,7 @@ const titleToSlug: Record<string, string> = {
   "Enterprise Software Development": "enterprise-software-development",
 };
 
-const services = [
+export const services = [
   {
     title: "Custom Software Development",
     description: "Bespoke solutions for your unique business challenges.",

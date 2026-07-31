@@ -3,8 +3,8 @@ import Link from "next/link";
 const quickLinks = [
   { name: "Home", href: "/" },
   { name: "About Us", href: "/about" },
-  { name: "Services", href: "#services" },
-  { name: "Portfolio", href: "#portfolio" },
+  { name: "Services", href: "/services" },
+  { name: "Portfolio", href: "/success-stories" },
   { name: "Careers", href: "#career" },
   { name: "Contact", href: "/contact-us" },
 ];
@@ -164,7 +164,7 @@ const Footer = () => {
             className="text-center text-[14px] leading-[14px] text-white"
             style={{ fontFamily: "var(--font-poppins-stack)" }}
           >
-            Copyright © 2024 Devsorb All rights reserved.
+            Copyright © 2026 Devsorb All rights reserved.
           </p>
         </div>
       </div>
