@@ -87,14 +87,14 @@ export default function CareersPage() {
                 </p>
                 <div className="flex flex-wrap items-center gap-2.5">
                   <span
-                    className="flex items-center gap-1.5 rounded-[6px] border border-[rgba(255,255,255,0.9)] px-4 py-2 text-[13px] leading-none text-white lg:text-[14px]"
+                    className="flex items-center gap-1.5 rounded-[6px] border border-[rgba(255,255,255,0.9)] px-[17px] py-[9px] text-[13px] leading-none text-white lg:text-[14px]"
                     style={{ fontFamily: "var(--font-poppins-stack)" }}
                   >
                     <PinIcon />
                     {job.location}
                   </span>
                   <span
-                    className="flex items-center gap-1.5 rounded-[6px] border border-[rgba(255,255,255,0.9)] px-4 py-2 text-[13px] leading-none text-white lg:text-[14px]"
+                    className="flex items-center gap-1.5 rounded-[6px] border border-[rgba(255,255,255,0.9)] px-[17px] py-[9px] text-[13px] leading-none text-white lg:text-[14px]"
                     style={{ fontFamily: "var(--font-poppins-stack)" }}
                   >
                     <ClockIcon />

@@ -21,22 +21,25 @@ export default function SuccessStoriesPage() {
       <Navbar />
       <SuccessHero />
 
-      <div className="relative mx-auto flex w-full flex-col items-center gap-[60px] pt-[60px] lg:gap-[100px] lg:pt-[100px]">
+      {/* Major-section gaps per Figma root frame 2364:16362: 181px; tabs and
+          tab content share one group with a 56px gap (frame 3869:22395) */}
+      <div className="relative mx-auto flex w-full flex-col items-center gap-[80px] pt-[80px] lg:gap-[181px] lg:pt-[181px]">
         {/* Purple glow */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute left-1/2 top-[900px] -z-0 h-[490px] w-[757px] -translate-x-1/2 rounded-full bg-[#221158] opacity-60 blur-[150px]"
         />
 
-        <TabToggle tab={tab} onChange={setTab} />
-
-        {tab === "stories" ? <IndustryStories /> : <CaseStudiesGrid />}
+        <div className="flex w-full flex-col items-center gap-[40px] lg:gap-[56px]">
+          <TabToggle tab={tab} onChange={setTab} />
+          {tab === "stories" ? <IndustryStories /> : <CaseStudiesGrid />}
+        </div>
 
         <WhyClientsSucceed />
         <SuccessCTA />
       </div>
 
-      <div className="mt-[60px] lg:mt-[100px]">
+      <div className="mt-[80px] lg:mt-[181px]">
         <Footer />
       </div>
     </main>
