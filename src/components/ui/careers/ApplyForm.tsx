@@ -88,8 +88,8 @@ const ApplyForm = ({ jobTitle }: { jobTitle: string }) => {
           </p>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="mt-9 flex flex-col gap-[26px]">
-          <div className="grid grid-cols-1 gap-[26px] md:grid-cols-2">
+        <form onSubmit={handleSubmit} className="mt-9 flex flex-col gap-[32px]">
+          <div className="grid grid-cols-1 gap-[32px] md:grid-cols-2">
             <Field label="Your Name" name="name" />
             <Field label="Your Email" name="email" type="email" />
             <Field label="Phone" name="phone" type="tel" />

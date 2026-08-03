@@ -81,7 +81,7 @@ export default async function JobDetailPage({
                   >
                     <span
                       aria-hidden="true"
-                      className="absolute left-2 top-[9px] h-[5px] w-[5px] rounded-[2.5px] bg-[#c8b8e8]"
+                      className="absolute left-2 top-[12px] h-[5px] w-[5px] rounded-[2.5px] bg-[#c8b8e8]"
                     />
                     {bullet}
                   </li>
