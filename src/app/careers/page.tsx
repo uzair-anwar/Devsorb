@@ -31,13 +31,20 @@ export default function CareersPage() {
     <main className="min-h-screen overflow-hidden bg-[var(--bg-main)] text-white">
       <Navbar />
 
-      {/* Hero */}
-      <section className="relative isolate overflow-hidden">
+      {/* Hero — geometry per Figma Desktop-2 frame (2380:17581): 404px tall,
+          title 179px from top, bg image 127.41% wide / top-aligned crop */}
+      <section className="relative isolate h-[240px] overflow-hidden md:h-[320px] lg:h-[404px]">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0">
           <img
             src="/assets/careers/hero-bg.png"
             alt=""
-            className="absolute inset-0 h-full w-full object-cover"
+            className="absolute max-w-none"
+            style={{
+              width: "127.41%",
+              height: "234.89%",
+              left: "-13.71%",
+              top: 0,
+            }}
           />
           <div
             className="absolute inset-0"
@@ -47,7 +54,7 @@ export default function CareersPage() {
             }}
           />
         </div>
-        <div className="relative z-10 mx-auto flex w-full max-w-[1180px] items-end justify-center px-4 pb-[80px] pt-[160px] lg:pb-[130px] lg:pt-[240px]">
+        <div className="relative z-10 mx-auto flex h-full w-full max-w-[1180px] justify-center px-4 pt-[110px] md:pt-[140px] lg:pt-[179px]">
           <h1
             className="text-center text-[44px] font-bold leading-[1.1] text-[var(--text-headline)] md:text-[64px] lg:text-[81px] lg:leading-[81px]"
             style={{ fontFamily: "var(--font-display)" }}

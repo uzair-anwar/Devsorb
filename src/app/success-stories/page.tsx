@@ -43,13 +43,21 @@ export default function SuccessStoriesPage() {
   );
 }
 
+// Hero geometry per Figma Desktop-1 frame (2364:16363): title block 179px
+// from top, bg image 128.26% wide / top-aligned crop
 const SuccessHero = () => (
   <section className="relative isolate overflow-hidden">
     <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0">
       <img
         src="/assets/success/hero-bg.png"
         alt=""
-        className="absolute inset-0 h-full w-full object-cover"
+        className="absolute max-w-none"
+        style={{
+          width: "128.26%",
+          height: "227.17%",
+          left: "-24.75%",
+          top: 0,
+        }}
       />
       <div
         className="absolute inset-0"
@@ -60,7 +68,7 @@ const SuccessHero = () => (
       />
     </div>
 
-    <div className="relative z-10 mx-auto flex w-full max-w-[1180px] flex-col items-center gap-8 px-4 pb-[70px] pt-[150px] text-center lg:px-0 lg:pb-[115px] lg:pt-[220px]">
+    <div className="relative z-10 mx-auto flex w-full max-w-[1180px] flex-col items-center gap-8 px-4 pb-[24px] pt-[120px] text-center lg:px-0 lg:pt-[179px]">
       <div className="flex flex-col items-center gap-4">
         <h1
           className="text-[40px] font-bold leading-[1.1] text-[var(--text-headline)] md:text-[60px] lg:text-[81px] lg:leading-[81px]"
