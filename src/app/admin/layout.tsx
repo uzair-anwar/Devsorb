@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
+// Admin pages read the Supabase auth cookie on every request — never
+// statically prerender them.
+export const dynamic = "force-dynamic";
+
 export default function AdminRootLayout({
   children,
 }: {
