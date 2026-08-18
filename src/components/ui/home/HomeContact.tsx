@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { buildContactMailto, CONTACT_EMAIL } from "@/lib/contact-mailto";
 
 const HomeContact = () => {
   const [form, setForm] = useState({
@@ -10,11 +11,17 @@ const HomeContact = () => {
     phone: "",
     message: "",
   });
+  const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSubmitted(true);
   };
 
   return (
@@ -117,9 +124,37 @@ const HomeContact = () => {
               Ready to Get Started?
             </h2>
 
+            {submitted ? (
+              <div
+                className="flex flex-col gap-4 rounded-[10px] border border-[rgba(255,255,255,0.2)] bg-white/5 p-6"
+                style={{ fontFamily: "var(--font-poppins-stack)" }}
+                role="status"
+              >
+                <p className="text-[18px] font-medium text-[var(--text-headline)]">
+                  Almost there — send it from your email app.
+                </p>
+                <p className="text-[15px] leading-[1.6] text-[rgba(255,255,255,0.65)]">
+                  Direct sending from the site is coming soon. Your message is
+                  ready as a pre-filled email draft — or reach us any time at{" "}
+                  <a
+                    href={`mailto:${CONTACT_EMAIL}`}
+                    className="text-[var(--accent-primary)] underline underline-offset-2"
+                  >
+                    {CONTACT_EMAIL}
+                  </a>
+                  .
+                </p>
+                <a
+                  href={buildContactMailto(form)}
+                  className="inline-flex h-[40px] w-fit items-center justify-center rounded-[8px] border border-[#020a18] bg-[var(--text-headline)] px-4 text-[16px] font-medium leading-none text-[#150544] shadow-[0_0_16px_rgba(57,115,233,0.25)] transition-colors hover:bg-white"
+                >
+                  Open email draft
+                </a>
+              </div>
+            ) : (
             <form
               className="flex flex-col gap-[15px]"
-              onSubmit={(e) => e.preventDefault()}
+              onSubmit={handleSubmit}
             >
               <div className="grid grid-cols-1 gap-[15px] sm:grid-cols-2 lg:gap-2">
                 <FormField
@@ -128,6 +163,7 @@ const HomeContact = () => {
                   value={form.firstName}
                   onChange={handleChange}
                   placeholder="First Name"
+                  required
                 />
                 <FormField
                   label="Last Name"
@@ -145,6 +181,7 @@ const HomeContact = () => {
                 value={form.email}
                 onChange={handleChange}
                 placeholder="Email"
+                required
               />
               <FormField
                 label="Phone Number"
@@ -161,6 +198,7 @@ const HomeContact = () => {
                 onChange={handleChange}
                 placeholder="Message"
                 rows={4}
+                required
                 className="h-[131px] w-full resize-none rounded-[5px] border border-white/20 bg-white/5 px-[14px] py-3 text-[15px] text-white placeholder-white/60 outline-none transition-colors focus:border-white/40"
                 style={{ fontFamily: "var(--font-poppins-stack)" }}
               />
@@ -175,6 +213,7 @@ const HomeContact = () => {
                 </button>
               </div>
             </form>
+            )}
           </div>
         </div>
       </div>
@@ -189,6 +228,7 @@ const FormField = ({
   value,
   onChange,
   placeholder,
+  required = false,
 }: {
   label: string;
   name: string;
@@ -196,6 +236,7 @@ const FormField = ({
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder: string;
+  required?: boolean;
 }) => (
   <input
     type={type}
@@ -204,6 +245,7 @@ const FormField = ({
     onChange={onChange}
     placeholder={placeholder}
     aria-label={label}
+    required={required}
     className="h-16 w-full rounded-[5px] border border-white/20 bg-white/5 px-[14px] py-3 text-[15px] text-white placeholder-white/60 outline-none transition-colors focus:border-white/40"
     style={{ fontFamily: "var(--font-poppins-stack)" }}
   />

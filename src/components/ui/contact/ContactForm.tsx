@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Button from "@/components/shared/button/button";
+import { buildContactMailto, CONTACT_EMAIL } from "@/lib/contact-mailto";
 
 const ContactForm = () => {
   const [form, setForm] = useState({
@@ -11,11 +12,17 @@ const ContactForm = () => {
     phone: "",
     message: "",
   });
+  const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSubmitted(true);
   };
 
   return (
@@ -37,9 +44,37 @@ const ContactForm = () => {
             Ready to Get Started?
           </h2>
 
+          {submitted ? (
+            <div
+              className="mt-8 flex flex-col gap-4 rounded-[10px] border border-[rgba(255,255,255,0.2)] bg-white/5 p-6"
+              style={{ fontFamily: "var(--font-poppins-stack)" }}
+              role="status"
+            >
+              <p className="text-[18px] font-medium text-[var(--text-headline)]">
+                Almost there — send it from your email app.
+              </p>
+              <p className="text-[15px] leading-[1.6] text-[rgba(255,255,255,0.65)]">
+                Direct sending from the site is coming soon. Your message is
+                ready as a pre-filled email draft — or reach us any time at{" "}
+                <a
+                  href={`mailto:${CONTACT_EMAIL}`}
+                  className="text-[var(--accent-primary)] underline underline-offset-2"
+                >
+                  {CONTACT_EMAIL}
+                </a>
+                .
+              </p>
+              <a
+                href={buildContactMailto(form)}
+                className="inline-flex h-[40px] w-fit items-center justify-center rounded-[8px] border border-[#020a18] bg-[var(--text-headline)] px-4 text-[16px] font-medium leading-none text-[#150544] shadow-[0_0_16px_rgba(57,115,233,0.25)] transition-colors hover:bg-white"
+              >
+                Open email draft
+              </a>
+            </div>
+          ) : (
           <form
             className="mt-8 flex flex-col gap-[15px]"
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={handleSubmit}
           >
             <div className="grid grid-cols-1 gap-[14px] sm:grid-cols-2">
               <FormInput
@@ -48,6 +83,7 @@ const ContactForm = () => {
                 onChange={handleChange}
                 placeholder="First Name"
                 aria-label="First Name"
+                required
               />
               <FormInput
                 name="lastName"
@@ -65,6 +101,7 @@ const ContactForm = () => {
               onChange={handleChange}
               placeholder="Email"
               aria-label="Email"
+              required
             />
 
             <FormInput
@@ -83,6 +120,7 @@ const ContactForm = () => {
               placeholder="Message"
               rows={4}
               aria-label="Message"
+              required
               className="w-full resize-none rounded-[5px] border border-white/20 bg-white/5 px-[14px] py-3 text-[15px] tracking-[-0.15px] text-white placeholder-white/60 outline-none transition-colors focus:border-white/40"
               style={{ fontFamily: "var(--font-inter), sans-serif" }}
             />
@@ -93,6 +131,7 @@ const ContactForm = () => {
               </Button>
             </div>
           </form>
+          )}
         </div>
 
         {/* Info card */}
