@@ -29,9 +29,9 @@ export default async function JobDetailPage({
     <main className="min-h-screen overflow-hidden bg-[var(--bg-main)] text-white">
       <Navbar />
 
-      <div className="mx-auto flex w-full max-w-[1320px] flex-col gap-[70px] px-4 pt-[140px] lg:gap-[135px] lg:pt-[190px]">
+      <div className="mx-auto flex w-full max-w-[1320px] flex-col gap-[48px] px-4 pt-[120px] lg:gap-[135px] lg:pt-[190px]">
         <h1
-          className="text-center text-[36px] font-bold leading-[1.1] tracking-[-0.01em] text-[var(--text-headline)] md:text-[54px] lg:text-[70px] lg:leading-[70px]"
+          className="text-center text-[28px] font-bold leading-[1.1] tracking-[-0.01em] text-[var(--text-headline)] md:text-[54px] lg:text-[70px] lg:leading-[70px]"
           style={{ fontFamily: "var(--font-display)" }}
         >
           {job.title}

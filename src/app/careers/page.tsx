@@ -36,7 +36,7 @@ export default async function CareersPage() {
 
       {/* Hero — geometry per Figma Desktop-2 frame (2380:17581): 404px tall,
           title 179px from top, bg image 127.41% wide / top-aligned crop */}
-      <section className="relative isolate h-[240px] overflow-hidden md:h-[320px] lg:h-[404px]">
+      <section className="relative isolate h-[170px] overflow-hidden md:h-[320px] lg:h-[404px]">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0">
           <img
             src="/assets/careers/hero-bg.png"
@@ -57,9 +57,9 @@ export default async function CareersPage() {
             }}
           />
         </div>
-        <div className="relative z-10 mx-auto flex h-full w-full max-w-[1180px] justify-center px-4 pt-[110px] md:pt-[140px] lg:pt-[179px]">
+        <div className="relative z-10 mx-auto flex h-full w-full max-w-[1180px] justify-center px-4 pt-[86px] md:pt-[140px] lg:pt-[179px]">
           <h1
-            className="text-center text-[44px] font-bold leading-[1.1] text-[var(--text-headline)] md:text-[64px] lg:text-[81px] lg:leading-[81px]"
+            className="text-center text-[30px] font-bold leading-[1.1] text-[var(--text-headline)] md:text-[64px] lg:text-[81px] lg:leading-[81px]"
             style={{ fontFamily: "var(--font-display)" }}
           >
             Featured Jobs
@@ -73,7 +73,7 @@ export default async function CareersPage() {
           {jobs.map((job) => (
             <article
               key={job.slug}
-              className="flex flex-col gap-6 rounded-[10px] border border-[rgba(255,255,255,0.12)] bg-[rgba(34,17,88,0.3)] px-6 py-8 shadow-[0px_4px_38.8px_rgba(255,255,255,0.05)] md:flex-row md:items-start md:justify-between lg:px-[25px] lg:py-9"
+              className="flex items-start justify-between gap-4 rounded-[10px] border border-[rgba(255,255,255,0.12)] bg-[rgba(34,17,88,0.3)] px-6 py-8 shadow-[0px_4px_38.8px_rgba(255,255,255,0.05)] lg:px-[25px] lg:py-9"
             >
               <div className="flex flex-col gap-4">
                 <h2

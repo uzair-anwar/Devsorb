@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SERVICES } from "@/lib/services-data";
 
 const quickLinks = [
   { name: "Home", href: "/" },
@@ -59,8 +60,32 @@ const Footer = () => {
         background: "linear-gradient(180deg, rgba(34,17,88,0) 0%, #221158 100%)",
       }}
     >
-      <div className="mx-auto max-w-[1172px] px-4 py-16 lg:h-[348.6px] lg:px-0 lg:py-6">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-3 lg:h-[229px] lg:grid-cols-[127px_94px_151px] lg:gap-[247px]">
+      <div className="mx-auto max-w-[1172px] px-4 py-16 lg:px-0 lg:pb-6 lg:pt-10">
+        {/* 4-column footer per Figma frame 3608:25884 */}
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:flex lg:justify-between lg:gap-8">
+          {/* Services links */}
+          <div className="flex flex-col gap-5 lg:gap-6">
+            <h4
+              className="text-[14px] font-semibold text-[var(--text-headline)] lg:text-[16px]"
+              style={{ fontFamily: "var(--font-poppins-stack)" }}
+            >
+              Services links
+            </h4>
+            <ul className="flex flex-col gap-3 lg:gap-[15px]">
+              {SERVICES.map((svc) => (
+                <li key={svc.slug}>
+                  <Link
+                    href={`/services/${svc.slug}`}
+                    className="text-[13px] text-[rgba(255,255,255,0.5)] transition-colors hover:text-[var(--accent-primary)]"
+                    style={{ fontFamily: "var(--font-poppins-stack)" }}
+                  >
+                    {svc.navTitle}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           {/* Quick Links */}
           <div className="flex flex-col gap-5">
             <h4
