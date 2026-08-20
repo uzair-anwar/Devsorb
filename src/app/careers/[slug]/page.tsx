@@ -11,6 +11,20 @@ export function generateStaticParams() {
   return JOBS.filter((j) => j.detail).map((j) => ({ slug: j.slug }));
 }
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const job = await getPublishedJob(slug);
+  if (!job) return {};
+  return {
+    title: `${job.title} — Careers`,
+    description: job.blurb,
+  };
+}
+
 export default async function JobDetailPage({
   params,
 }: {

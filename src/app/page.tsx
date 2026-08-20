@@ -9,6 +9,14 @@ import HomeTestimonials from "@/components/ui/home/HomeTestimonials";
 import HomeHireDevelopers from "@/components/ui/home/HomeHireDevelopers";
 import HomeContact from "@/components/ui/home/HomeContact";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Devsorb — Build. Scale. Automate. Your Business",
+  description:
+    "Custom software, AI, and automation delivered faster, smarter, and your way. Devsorb helps startups and enterprises turn ideas into scalable products.",
+};
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-[var(--bg-main)]">
