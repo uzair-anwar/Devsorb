@@ -1,0 +1,24 @@
+name: Supabase keep-alive
+
+# Free-tier Supabase pauses projects after ~7 days without API activity.
+# This pings the REST API twice a week so the database never goes idle.
+# Requires two repo secrets (Settings -> Secrets and variables -> Actions):
+#   SUPABASE_URL      - the project URL (https://xxxx.supabase.co)
+#   SUPABASE_ANON_KEY - the anon/publishable key
+
+on:
+  schedule:
+    - cron: "0 6 * * 1,4" # Mondays and Thursdays, 06:00 UTC
+  workflow_dispatch: {}
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase REST API
+        run: |
+          code=$(curl -s -o /dev/null -w "%{http_code}" \
+            "${{ secrets.SUPABASE_URL }}/rest/v1/jobs?select=id&limit=1" \
+            -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}")
+          echo "Supabase responded with HTTP $code"
+          test "$code" = "200"
