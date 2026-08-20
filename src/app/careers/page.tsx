@@ -1,7 +1,9 @@
 import Link from "next/link";
 import Navbar from "@/components/shared/navbar/Navbar";
 import Footer from "@/components/shared/footer/Footer";
-import { JOBS } from "@/lib/careers-data";
+import { getPublishedJobs } from "@/lib/cms";
+
+export const revalidate = 60;
 
 const PinIcon = () => (
   <svg width="12" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -26,7 +28,8 @@ const ClockIcon = () => (
   </svg>
 );
 
-export default function CareersPage() {
+export default async function CareersPage() {
+  const jobs = await getPublishedJobs();
   return (
     <main className="min-h-screen overflow-hidden bg-[var(--bg-main)] text-white">
       <Navbar />
@@ -67,7 +70,7 @@ export default function CareersPage() {
       {/* Job cards */}
       <section className="relative mx-auto w-full max-w-[1196px] px-4 pt-[60px] lg:px-0 lg:pt-[100px]">
         <div className="flex flex-col gap-5">
-          {JOBS.map((job) => (
+          {jobs.map((job) => (
             <article
               key={job.slug}
               className="flex flex-col gap-6 rounded-[10px] border border-[rgba(255,255,255,0.12)] bg-[rgba(34,17,88,0.3)] px-6 py-8 shadow-[0px_4px_38.8px_rgba(255,255,255,0.05)] md:flex-row md:items-start md:justify-between lg:px-[25px] lg:py-9"

@@ -2,7 +2,10 @@ import { notFound } from "next/navigation";
 import Navbar from "@/components/shared/navbar/Navbar";
 import Footer from "@/components/shared/footer/Footer";
 import ApplyForm from "@/components/ui/careers/ApplyForm";
-import { JOBS, getJobBySlug } from "@/lib/careers-data";
+import { JOBS } from "@/lib/careers-data";
+import { getPublishedJob } from "@/lib/cms";
+
+export const revalidate = 60;
 
 export function generateStaticParams() {
   return JOBS.filter((j) => j.detail).map((j) => ({ slug: j.slug }));
@@ -14,7 +17,7 @@ export default async function JobDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const job = getJobBySlug(slug);
+  const job = await getPublishedJob(slug);
 
   if (!job?.detail) {
     notFound();
