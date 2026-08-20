@@ -16,6 +16,20 @@ export function generateStaticParams() {
 
 type Params = { slug: string };
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<Params>;
+}) {
+  const { slug } = await params;
+  const service = getServiceBySlug(slug);
+  if (!service) return {};
+  return {
+    title: service.navTitle,
+    description: service.heroSubtitle,
+  };
+}
+
 export default async function ServicePage({
   params,
 }: {

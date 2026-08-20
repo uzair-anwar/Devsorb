@@ -3,6 +3,14 @@ import Navbar from "@/components/shared/navbar/Navbar";
 import Footer from "@/components/shared/footer/Footer";
 import { getPublishedJobs } from "@/lib/cms";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Careers",
+  description:
+    "Explore open roles at Devsorb — join a team of passionate innovators building scalable digital solutions.",
+};
+
 export const revalidate = 60;
 
 const PinIcon = () => (

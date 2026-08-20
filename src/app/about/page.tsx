@@ -9,6 +9,14 @@ import AboutCTA from "@/components/ui/about/AboutCTA";
 import Testimonials from "@/components/ui/about/Testimonials";
 import { getTeamMembers } from "@/lib/cms";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About Us",
+  description:
+    "Devsorb is a software development company with expertise in frontend, backend, mobile, AI, blockchain, DevOps, and QA — delivering end-to-end, scalable solutions.",
+};
+
 export const revalidate = 60;
 
 export default async function AboutPage() {

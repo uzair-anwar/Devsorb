@@ -9,6 +9,20 @@ export function generateStaticParams() {
   return CASE_STUDIES.filter((c) => c.detail).map((c) => ({ slug: c.slug }));
 }
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const study = await getPublishedCaseStudy(slug);
+  if (!study) return {};
+  return {
+    title: `${study.title} — Case Study`,
+    description: study.detail?.intro.subtitle,
+  };
+}
+
 export default async function CaseStudyPage({
   params,
 }: {
