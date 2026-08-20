@@ -6,7 +6,7 @@ import { createClient } from "@/lib/supabase/client";
 const MAX_RESUME_BYTES = 15 * 1024 * 1024;
 
 const inputClass =
-  "h-[56px] w-full rounded-[5px] border border-[#3f3f49] bg-[rgba(255,255,255,0.05)] px-4 text-[15px] text-white outline-none transition-colors focus:border-[var(--accent-primary)] lg:h-[64px]";
+  "h-[42px] w-full rounded-[5px] border border-[#3f3f49] bg-[rgba(255,255,255,0.05)] px-3 text-[15px] text-white outline-none transition-colors focus:border-[var(--accent-primary)] lg:h-[64px] lg:px-4";
 
 const labelClass = "text-[14px] leading-[14px] text-white";
 
@@ -154,8 +154,8 @@ const ApplyForm = ({ jobTitle }: { jobTitle: string }) => {
           </button>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="mt-9 flex flex-col gap-[32px]">
-          <div className="grid grid-cols-1 gap-[32px] md:grid-cols-2">
+        <form onSubmit={handleSubmit} className="mt-9 flex flex-col gap-5 lg:gap-[32px]">
+          <div className="grid grid-cols-2 gap-4 lg:gap-[32px]">
             <Field label="Your Name" name="name" />
             <Field label="Your Email" name="email" type="email" />
             <Field label="Phone" name="phone" type="tel" />

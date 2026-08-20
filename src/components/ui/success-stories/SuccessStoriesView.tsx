@@ -109,7 +109,7 @@ const TabToggle = ({
   tab: Tab;
   onChange: (t: Tab) => void;
 }) => (
-  <div className="relative z-10 flex w-[calc(100%-32px)] max-w-[1086px] overflow-hidden rounded-[12px]">
+  <div className="relative z-10 flex w-[calc(100%-32px)] max-w-[320px] overflow-hidden rounded-[8px] md:max-w-[1086px] md:rounded-[12px]">
     {(
       [
         { key: "stories", label: "Success Stories" },
@@ -121,7 +121,7 @@ const TabToggle = ({
         type="button"
         onClick={() => onChange(key)}
         aria-pressed={tab === key}
-        className={`flex h-[48px] flex-1 cursor-pointer items-center justify-center text-[16px] font-medium transition-colors md:h-[62px] md:text-[22px] lg:text-[25px] ${
+        className={`flex h-[36px] flex-1 cursor-pointer items-center justify-center text-[13px] font-medium transition-colors md:h-[62px] md:text-[22px] lg:text-[25px] ${
           tab === key
             ? "bg-[#f4f7ff] text-[#190c40]"
             : "bg-[#190c40] text-[#f4f7ff] hover:bg-[#241259]"
@@ -148,7 +148,7 @@ const IndustryStories = () => (
         <div
           key={group.industry}
           className={`flex flex-col gap-4 ${
-            group.imageSide === "right" ? "lg:items-end" : "lg:items-start"
+            group.imageSide === "right" ? "items-end" : "items-start"
           }`}
         >
           <h3
@@ -280,7 +280,7 @@ const STAT_CHIPS = [
 
 const WhyClientsSucceed = () => (
   <section className="relative z-10 mx-auto w-[calc(100%-32px)] max-w-[1100px] rounded-[30px] border border-[rgba(255,255,255,0.1)] p-6 lg:p-8">
-    <div className="flex flex-col items-center gap-8 lg:flex-row lg:gap-[29px]">
+    <div className="flex flex-col-reverse items-center gap-8 lg:flex-row lg:gap-[29px]">
       <div className="relative aspect-[501/417] w-full shrink-0 overflow-hidden rounded-[16px] border border-[rgba(255,255,255,0.1)] lg:h-[417px] lg:w-[501px]">
         <img
           src="/assets/success/why-clients.png"
