@@ -1,6 +1,9 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { createClient } from "@/lib/supabase/client";
+
+const MAX_RESUME_BYTES = 15 * 1024 * 1024;
 
 const inputClass =
   "h-[56px] w-full rounded-[5px] border border-[#3f3f49] bg-[rgba(255,255,255,0.05)] px-4 text-[15px] text-white outline-none transition-colors focus:border-[var(--accent-primary)] lg:h-[64px]";
@@ -30,12 +33,54 @@ const Field = ({
 );
 
 const ApplyForm = ({ jobTitle }: { jobTitle: string }) => {
-  const [fileName, setFileName] = useState<string | null>(null);
-  const [submitted, setSubmitted] = useState(false);
+  const [resumeFile, setResumeFile] = useState<File | null>(null);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [errorText, setErrorText] = useState<string | null>(null);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    setErrorText(null);
+
+    if (resumeFile && resumeFile.size > MAX_RESUME_BYTES) {
+      setErrorText("Resume must be 15 MB or smaller.");
+      return;
+    }
+
+    const data = new FormData(e.currentTarget);
+    if ((data.get("company") as string)?.trim()) {
+      setStatus("sent"); // bot: pretend success, store nothing
+      return;
+    }
+
+    setStatus("sending");
+    const supabase = createClient();
+
+    let resumePath: string | null = null;
+    if (resumeFile) {
+      const safeName = resumeFile.name.replace(/[^a-zA-Z0-9.-]/g, "_");
+      const path = `applications/${Date.now()}-${safeName}`;
+      const { error: upErr } = await supabase.storage
+        .from("resumes")
+        .upload(path, resumeFile);
+      if (upErr) {
+        setStatus("error");
+        return;
+      }
+      resumePath = path;
+    }
+
+    const { error } = await supabase.from("job_applications").insert({
+      name: data.get("name"),
+      email: data.get("email"),
+      phone: data.get("phone") ?? "",
+      address: data.get("address") ?? "",
+      job_posting: data.get("job-posting") ?? jobTitle,
+      heard_from: data.get("source") ?? "",
+      expected_salary: data.get("salary") ?? "",
+      message: data.get("message") ?? "",
+      resume_url: resumePath,
+    });
+    setStatus(error ? "error" : "sent");
   };
 
   return (
@@ -63,18 +108,32 @@ const ApplyForm = ({ jobTitle }: { jobTitle: string }) => {
         </p>
       </div>
 
-      {submitted ? (
+      {status === "sent" ? (
         <div
           className="mt-10 flex flex-col gap-3 rounded-[10px] border border-[rgba(255,255,255,0.2)] bg-[rgba(255,255,255,0.05)] p-6"
           style={{ fontFamily: "var(--font-poppins-stack)" }}
           role="status"
         >
           <p className="text-[18px] font-medium text-[var(--text-headline)]">
-            Online applications aren&apos;t open yet.
+            Application submitted — thank you!
           </p>
           <p className="text-[15px] leading-[1.6] text-[rgba(255,255,255,0.65)]">
-            We&apos;re still wiring up the application system. In the meantime,
-            please email your resume and details for the{" "}
+            Your application for the{" "}
+            <span className="text-white">{jobTitle}</span> role has been
+            received. Our team reviews every application and will be in touch.
+          </p>
+        </div>
+      ) : status === "error" ? (
+        <div
+          className="mt-10 flex flex-col gap-3 rounded-[10px] border border-[rgba(255,255,255,0.2)] bg-[rgba(255,255,255,0.05)] p-6"
+          style={{ fontFamily: "var(--font-poppins-stack)" }}
+          role="alert"
+        >
+          <p className="text-[18px] font-medium text-[var(--text-headline)]">
+            We couldn&apos;t submit your application right now.
+          </p>
+          <p className="text-[15px] leading-[1.6] text-[rgba(255,255,255,0.65)]">
+            Please email your resume and details for the{" "}
             <span className="text-white">{jobTitle}</span> role to{" "}
             <a
               href={`mailto:hr@devsorb.com?subject=${encodeURIComponent(
@@ -86,6 +145,13 @@ const ApplyForm = ({ jobTitle }: { jobTitle: string }) => {
             </a>{" "}
             — we review every application.
           </p>
+          <button
+            type="button"
+            onClick={() => setStatus("idle")}
+            className="w-fit cursor-pointer text-[14px] text-[var(--accent-primary)] underline underline-offset-2"
+          >
+            Try again
+          </button>
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="mt-9 flex flex-col gap-[32px]">
@@ -140,14 +206,14 @@ const ApplyForm = ({ jobTitle }: { jobTitle: string }) => {
               Resume/CV <span className="text-[#fc0000]">*</span>
             </span>
             <label className="inline-flex h-[40px] w-fit cursor-pointer items-center justify-center rounded-[8px] border border-white px-4 text-[16px] font-medium leading-none text-white shadow-[0px_0px_16px_rgba(57,115,233,0.25)] transition-colors hover:bg-white/10">
-              {fileName ?? "Resume/ CV"}
+              {resumeFile?.name ?? "Resume/ CV"}
               <input
                 type="file"
                 name="resume"
                 accept=".pdf,.doc,.docx,.jpg,.jpeg"
                 required
                 className="hidden"
-                onChange={(e) => setFileName(e.target.files?.[0]?.name ?? null)}
+                onChange={(e) => setResumeFile(e.target.files?.[0] ?? null)}
               />
             </label>
             <p className="text-[15px] leading-[16px]">
@@ -156,12 +222,32 @@ const ApplyForm = ({ jobTitle }: { jobTitle: string }) => {
             </p>
           </div>
 
+          <input
+            type="text"
+            name="company"
+            className="hidden"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+          />
+
+          {errorText && (
+            <p
+              role="alert"
+              className="rounded-[8px] border border-red-400/40 bg-red-500/10 px-4 py-3 text-[15px] text-red-300"
+              style={{ fontFamily: "var(--font-poppins-stack)" }}
+            >
+              {errorText}
+            </p>
+          )}
+
           <button
             type="submit"
-            className="mt-4 inline-flex h-[40px] w-fit cursor-pointer items-center justify-center rounded-[6px] border border-[#f4f7ff] bg-[#190c40] px-4 text-[16px] font-medium leading-none text-[#f4f7ff] shadow-[inset_-1px_-3.25px_9px_rgba(88,42,255,0.32),inset_0.75px_3px_7.7px_rgba(115,82,221,0.43)] transition-transform hover:scale-[1.02]"
+            disabled={status === "sending"}
+            className="mt-4 inline-flex h-[40px] w-fit cursor-pointer items-center justify-center rounded-[6px] border border-[#f4f7ff] bg-[#190c40] px-4 text-[16px] font-medium leading-none text-[#f4f7ff] shadow-[inset_-1px_-3.25px_9px_rgba(88,42,255,0.32),inset_0.75px_3px_7.7px_rgba(115,82,221,0.43)] transition-transform hover:scale-[1.02] disabled:opacity-60"
             style={{ fontFamily: "var(--font-display)" }}
           >
-            Submit Now
+            {status === "sending" ? "Submitting…" : "Submit Now"}
           </button>
         </form>
       )}
