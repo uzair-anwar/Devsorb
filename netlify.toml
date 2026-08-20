@@ -1,2 +1,11 @@
 [build]
   command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Server-output Next.js (the admin portal needs SSR + middleware).
+# The runtime must be explicit on sites originally set up as static —
+# auto-detection doesn't kick in when the site pre-dates the switch.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
