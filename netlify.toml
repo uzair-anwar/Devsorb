@@ -1,5 +1,8 @@
 [build]
   command = "npm run build"
+  # Next.js runtime expects the .next build dir; declaring it here
+  # overrides any stale publish-directory value in the Netlify UI.
+  publish = ".next"
 
 [build.environment]
   NODE_VERSION = "22"
