@@ -3,6 +3,9 @@
 import { useState } from "react";
 import Button from "@/components/shared/button/button";
 import { buildContactMailto, CONTACT_EMAIL } from "@/lib/contact-mailto";
+import { createClient } from "@/lib/supabase/client";
+
+type Status = "idle" | "sending" | "sent" | "error";
 
 const ContactForm = () => {
   const [form, setForm] = useState({
@@ -12,7 +15,8 @@ const ContactForm = () => {
     phone: "",
     message: "",
   });
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<Status>("idle");
+  const [honeypot, setHoneypot] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -20,9 +24,21 @@ const ContactForm = () => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    if (honeypot) {
+      setStatus("sent"); // bot: pretend success, store nothing
+      return;
+    }
+    setStatus("sending");
+    const { error } = await createClient().from("contact_submissions").insert({
+      first_name: form.firstName,
+      last_name: form.lastName,
+      email: form.email,
+      phone: form.phone,
+      message: form.message,
+    });
+    setStatus(error ? "error" : "sent");
   };
 
   return (
@@ -44,25 +60,38 @@ const ContactForm = () => {
             Ready to Get Started?
           </h2>
 
-          {submitted ? (
+          {status === "sent" ? (
             <div
               className="mt-8 flex flex-col gap-4 rounded-[10px] border border-[rgba(255,255,255,0.2)] bg-white/5 p-6"
               style={{ fontFamily: "var(--font-poppins-stack)" }}
               role="status"
             >
               <p className="text-[18px] font-medium text-[var(--text-headline)]">
-                Almost there — send it from your email app.
+                Message sent — thank you!
               </p>
               <p className="text-[15px] leading-[1.6] text-[rgba(255,255,255,0.65)]">
-                Direct sending from the site is coming soon. Your message is
-                ready as a pre-filled email draft — or reach us any time at{" "}
+                Our team will review your message and get back to you at{" "}
+                <span className="text-white">{form.email}</span>.
+              </p>
+            </div>
+          ) : status === "error" ? (
+            <div
+              className="mt-8 flex flex-col gap-4 rounded-[10px] border border-[rgba(255,255,255,0.2)] bg-white/5 p-6"
+              style={{ fontFamily: "var(--font-poppins-stack)" }}
+              role="alert"
+            >
+              <p className="text-[18px] font-medium text-[var(--text-headline)]">
+                We couldn&apos;t send your message right now.
+              </p>
+              <p className="text-[15px] leading-[1.6] text-[rgba(255,255,255,0.65)]">
+                Please email us instead at{" "}
                 <a
                   href={`mailto:${CONTACT_EMAIL}`}
                   className="text-[var(--accent-primary)] underline underline-offset-2"
                 >
                   {CONTACT_EMAIL}
-                </a>
-                .
+                </a>{" "}
+                — your message is ready as a pre-filled draft.
               </p>
               <a
                 href={buildContactMailto(form)}
@@ -125,9 +154,26 @@ const ContactForm = () => {
               style={{ fontFamily: "var(--font-inter), sans-serif" }}
             />
 
+            <input
+              type="text"
+              name="company"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+              className="hidden"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+            />
+
             <div className="mt-2">
-              <Button variant="primary" size="sm" type="submit" className="w-fit">
-                Get In Touch
+              <Button
+                variant="primary"
+                size="sm"
+                type="submit"
+                className="w-fit"
+                disabled={status === "sending"}
+              >
+                {status === "sending" ? "Sending…" : "Get In Touch"}
               </Button>
             </div>
           </form>

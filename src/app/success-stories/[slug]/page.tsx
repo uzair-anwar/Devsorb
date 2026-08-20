@@ -1,6 +1,9 @@
 import { notFound } from "next/navigation";
 import CaseStudyDetail from "@/components/ui/success-stories/CaseStudyDetail";
-import { CASE_STUDIES, getCaseStudyBySlug } from "@/lib/success-stories-data";
+import { CASE_STUDIES } from "@/lib/success-stories-data";
+import { getPublishedCaseStudy } from "@/lib/cms";
+
+export const revalidate = 60;
 
 export function generateStaticParams() {
   return CASE_STUDIES.filter((c) => c.detail).map((c) => ({ slug: c.slug }));
@@ -12,7 +15,7 @@ export default async function CaseStudyPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const study = getCaseStudyBySlug(slug);
+  const study = await getPublishedCaseStudy(slug);
 
   if (!study?.detail) {
     notFound();
