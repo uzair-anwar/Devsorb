@@ -9,7 +9,7 @@ import {
 import Link from "next/link";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "outline" | "ghost";
+  variant?: "primary" | "secondary" | "outline" | "ghost" | "light";
   size?: "xs" | "sm" | "md" | "lg" | "xl";
   href?: string;
   children: ReactNode;
@@ -36,6 +36,10 @@ const Button: FC<ButtonProps> = ({
       "border border-[var(--accent-primary)]/30 text-[var(--text-headline)] hover:bg-[var(--accent-primary)]/10 hover:border-[var(--accent-primary)] transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]",
     ghost:
       "text-[var(--white)] hover:bg-[var(--white)]/5 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]",
+    // Figma "Component 14" — solid #f4f7ff. The fill is fixed by the design,
+    // so hover deepens the blue glow instead of shifting the colour.
+    light:
+      "cursor-pointer rounded-[8px] border border-[#020a18] bg-[var(--text-headline)] font-medium text-[#150544] shadow-[0_0_8px_rgba(57,115,233,0.25)] transition-shadow duration-300 ease-out hover:shadow-[0_0_18px_rgba(57,115,233,0.5)]",
   };
 
   const sizes = {
@@ -47,7 +51,8 @@ const Button: FC<ButtonProps> = ({
   };
 
   const primaryStyle: CSSProperties = {
-    fontFamily: "var(--font-jakarta)",
+    fontFamily:
+      variant === "light" ? "var(--font-display)" : "var(--font-jakarta)",
     backgroundColor: variant === "primary" ? "#190c40" : undefined,
     boxShadow: variant === "primary"
       ? "0 2px 4px rgba(115,82,221,0.13)"

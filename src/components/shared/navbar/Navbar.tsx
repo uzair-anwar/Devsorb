@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Button from "@/components/shared/button/button";
+import LanguageSwitcher from "@/components/shared/navbar/LanguageSwitcher";
 import { SERVICES } from "@/lib/services-data";
 
 type NavItem = {
@@ -154,7 +155,7 @@ const Navbar = () => {
               )}
             </div>
 
-            <div className="shrink-0">
+            <div className="flex shrink-0 items-center gap-2">
               <Button
                 variant="primary"
                 size="sm"
@@ -163,6 +164,7 @@ const Navbar = () => {
               >
                 Get In Touch
               </Button>
+              <LanguageSwitcher />
             </div>
           </div>
 
@@ -314,7 +316,7 @@ const Navbar = () => {
                 </Link>
               ),
             )}
-            <div className="mt-8 border-t border-[var(--white)]/10 pt-8">
+            <div className="mt-8 flex flex-col gap-6 border-t border-[var(--white)]/10 pt-8">
               <Button
                 variant="primary"
                 size="lg"
@@ -324,6 +326,7 @@ const Navbar = () => {
               >
                 Get In Touch
               </Button>
+              <LanguageSwitcher />
             </div>
           </div>
         </div>

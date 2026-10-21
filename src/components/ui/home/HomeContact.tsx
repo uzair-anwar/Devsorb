@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Button from "@/components/shared/button/button";
+import SectionHeading from "@/components/shared/section-heading/SectionHeading";
 import { buildContactMailto, CONTACT_EMAIL } from "@/lib/contact-mailto";
 import { createClient } from "@/lib/supabase/client";
 
@@ -41,7 +43,13 @@ const HomeContact = () => {
   };
 
   return (
-    <section id="contact" className="relative mx-auto w-full max-w-[1172px] overflow-hidden px-4 py-20 lg:h-[729px] lg:px-0 lg:py-0">
+    <section id="contact" className="relative mx-auto w-full max-w-[1172px] overflow-hidden px-4 py-20 lg:h-[753px] lg:px-0 lg:py-0">
+      <SectionHeading
+        label="Contact us"
+        title="Let's Build Something Amazing Together"
+        className="mb-12 lg:mb-[56px]"
+      />
+
       <div className="relative z-10 flex flex-col gap-8 lg:h-[629px] lg:block">
         <div
           aria-hidden="true"
@@ -134,7 +142,7 @@ const HomeContact = () => {
             }}
           >
             <h2
-              className="mb-8 text-[24px] font-semibold leading-[1.2] tracking-[-0.5px] text-[var(--text-headline)] md:text-[30px] md:leading-[45px]"
+              className="mb-8 text-[24px] font-medium leading-[1.2] tracking-[-0.5px] text-[var(--text-headline)] md:text-[30px] md:leading-[45px]"
               style={{ fontFamily: "var(--font-poppins-stack)" }}
             >
               Ready to Get Started?
@@ -173,12 +181,14 @@ const HomeContact = () => {
                   </a>{" "}
                   — your message is ready as a pre-filled draft.
                 </p>
-                <a
+                <Button
+                  variant="light"
+                  size="sm"
                   href={buildContactMailto(form)}
-                  className="inline-flex h-[40px] w-fit items-center justify-center rounded-[8px] border border-[#020a18] bg-[var(--text-headline)] px-4 text-[16px] font-medium leading-none text-[#150544] shadow-[0_0_16px_rgba(57,115,233,0.25)] transition-colors hover:bg-white"
+                  className="w-fit"
                 >
                   Open email draft
-                </a>
+                </Button>
               </div>
             ) : (
             <form
@@ -244,14 +254,14 @@ const HomeContact = () => {
               />
 
               <div>
-                <button
+                <Button
                   type="submit"
+                  variant="light"
+                  size="sm"
                   disabled={status === "sending"}
-                  className="inline-flex h-[40px] items-center justify-center rounded-[8px] border border-[#020a18] bg-[var(--text-headline)] px-4 text-[16px] font-medium leading-4 text-[#150544] shadow-[0_0_16px_rgba(57,115,233,0.25)] transition-colors hover:bg-white/90 disabled:opacity-60"
-                  style={{ fontFamily: "var(--font-poppins-stack)" }}
                 >
                   {status === "sending" ? "Sending…" : "Get In Touch"}
-                </button>
+                </Button>
               </div>
             </form>
             )}
