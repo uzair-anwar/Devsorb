@@ -1,208 +1,185 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import Button from "@/components/shared/button/button";
 
+/**
+ * Figma 24:4132. Each stat is an odometer in the design — a scrolling column
+ * that lands on `to`. We count up once the section scrolls into view.
+ */
 const stats = [
-  { value: "200+", label: "Projects Delivered" },
-  { value: "7+", label: "Years of Client Relationship" },
-  { value: "97%", label: "Customer Satisfaction" },
-  { value: "1M+", label: "Hours Augmented" },
-  { value: "275+", label: "Lives Impacted" },
+  { from: 100, to: 200, suffix: "+", label: "Projects Delivered" },
+  { from: 1, to: 7, suffix: "+", label: "Years of Client Relationship" },
+  { from: 10, to: 97, suffix: "%", label: "Customer Satisfaction" },
+  { from: 1, to: 1, suffix: "M+", label: "Hours Augmented" },
+  { from: 180, to: 275, suffix: "+", label: "Lives Impacted" },
 ];
 
-const HomeWhoWeAre = () => {
+const COUNT_MS = 1400;
+
+const useInView = <T extends HTMLElement>() => {
+  const ref = useRef<T>(null);
+  const [seen, setSeen] = useState(false);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node || seen) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => entry.isIntersecting && setSeen(true),
+      { threshold: 0.3 },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [seen]);
+
+  return [ref, seen] as const;
+};
+
+const StatChip = ({
+  from,
+  to,
+  suffix,
+  label,
+  run,
+}: (typeof stats)[number] & { run: boolean }) => {
+  const [value, setValue] = useState(from);
+
+  useEffect(() => {
+    if (!run || from === to) return;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let frame = 0;
+    const start = performance.now();
+    const tick = (now: number) => {
+      // reduced motion lands on the final value on the first frame
+      const t = reduced ? 1 : Math.min((now - start) / COUNT_MS, 1);
+      // ease-out so it settles rather than stopping dead
+      setValue(Math.round(from + (to - from) * (1 - Math.pow(1 - t, 3))));
+      if (t < 1) frame = requestAnimationFrame(tick);
+    };
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [run, from, to]);
+
   return (
-    <section className="relative w-full overflow-hidden lg:h-[687px]">
-      {/* Purple glow */}
+    <span className="flex h-[30px] w-[236px] shrink-0 items-center justify-center gap-2 rounded-[100px] border border-[#17192b] bg-[rgba(255,255,255,0.1)] px-3 py-1.5 backdrop-blur-[2.25px]">
+      <img
+        src="/assets/wwa-sparkle.svg"
+        alt=""
+        aria-hidden="true"
+        className="h-[18px] w-[18px] shrink-0"
+      />
+      <span className="flex items-center gap-1 whitespace-nowrap">
+        <span
+          className="text-[16px] leading-4 font-medium text-white"
+          style={{ fontFamily: "var(--font-poppins-stack)" }}
+        >
+          {value}
+          {suffix}
+        </span>
+        <span
+          className="text-[12px] leading-3 font-normal text-white"
+          style={{ fontFamily: "var(--font-inter), sans-serif" }}
+        >
+          {label}
+        </span>
+      </span>
+    </span>
+  );
+};
+
+const Divider = ({ flip = false }: { flip?: boolean }) => (
+  <span aria-hidden="true" className="relative block h-[5px] w-[50px] shrink-0">
+    <span
+      className="absolute top-[2px] left-0 block h-px w-12"
+      style={{
+        backgroundImage: `linear-gradient(${flip ? 270 : 90}deg, rgba(0,3,28,0) 6.069%, #f4f7ff 51.261%, rgba(0,3,28,0) 91.211%)`,
+      }}
+    />
+    <span
+      className={`absolute top-[1px] block size-[5px] rounded-[5px] bg-[#4f60fa] blur-[1px] ${flip ? "left-[-6px]" : "left-[48px]"}`}
+    />
+  </span>
+);
+
+const HomeWhoWeAre = () => {
+  const [ref, inView] = useInView<HTMLElement>();
+
+  return (
+    <section
+      ref={ref}
+      className="relative w-full overflow-hidden lg:h-[487px]"
+    >
+      {/* Perspective grid floor — Figma 24:4133, rotated 180, 60% opacity */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-0 -z-0 h-[600px] w-[900px] -translate-x-1/2 rounded-full opacity-40 blur-[160px]"
-        style={{
-          backgroundImage:
-            "radial-gradient(ellipse at center, #3a1a8a 0%, #221158 50%, transparent 70%)",
-        }}
-      />
+        className="pointer-events-none absolute bottom-0 left-1/2 h-[140px] w-[1441px] -translate-x-1/2 overflow-hidden md:h-[200px] lg:top-[239px] lg:bottom-auto lg:h-[248px]"
+      >
+        <img
+          src="/assets/wwa-grid.png"
+          alt=""
+          className="absolute bottom-0 left-1/2 w-[1440px] max-w-none -translate-x-1/2 rotate-180 opacity-60"
+        />
+      </div>
 
-      <div className="relative z-10 mx-auto flex max-w-[1180px] flex-col items-center gap-6 px-4 py-12 text-center md:gap-8 md:py-20 lg:absolute lg:top-[100px] lg:left-1/2 lg:w-[1180px] lg:-translate-x-1/2 lg:gap-[58px] lg:px-0 lg:py-0">
-        {/* Text block: label + headline grouped with 16px inner gap */}
-        <div className="flex flex-col items-center gap-4">
-          <div className="flex items-center gap-3">
-            <span
-              aria-hidden="true"
-              className="h-px w-8 bg-gradient-to-r from-transparent to-[rgba(244,247,255,0.55)]"
-            />
-            <span
-              className="text-[16px] font-medium leading-4 tracking-normal text-[var(--text-headline)]"
+      <div className="relative z-10 mx-auto flex max-w-[1180px] flex-col items-center gap-8 px-4 py-12 pb-10 text-center md:py-20 lg:gap-10 lg:px-[176px] lg:py-0 lg:pt-0 lg:pb-[42px]">
+        <div className="flex w-full flex-col items-center gap-6 lg:w-[972px]">
+          <div className="flex flex-col items-center gap-4">
+            <div className="flex items-center">
+              <Divider />
+              <span
+                className="px-1 text-[16px] leading-4 font-medium text-[var(--text-headline)]"
+                style={{ fontFamily: "var(--font-inter), sans-serif" }}
+              >
+                Who We Are
+              </span>
+              <Divider flip />
+            </div>
+
+            {/* Body copy: Poppins Regular 32/41 per Figma 24:4149 */}
+            <p
+              className="max-w-[404px] text-[16px] leading-[22px] font-normal text-[#F4F7FF] md:max-w-[760px] md:text-[28px] md:leading-[36px] lg:max-w-none lg:text-[32px] lg:leading-[41px]"
               style={{ fontFamily: "var(--font-poppins-stack)" }}
             >
-              Who We Are
-            </span>
-            <span
-              aria-hidden="true"
-              className="h-px w-8 bg-gradient-to-l from-transparent to-[rgba(244,247,255,0.55)]"
-            />
+              A software development company that helps startups, growing
+              businesses, and enterprises turn ideas into reality.
+            </p>
           </div>
 
-          {/* Headline */}
-          <p
-            className="max-w-[404px] text-[16px] font-medium leading-[22px] text-[#F4F7FF] md:max-w-[760px] md:text-[28px] md:leading-[36px] lg:max-w-[1028px] lg:text-[32px] lg:leading-[41px]"
-            style={{ fontFamily: "var(--font-poppins-stack)" }}
-          >
-            A software development company that helps startups, growing
-            businesses, and enterprises turn ideas into reality.
-          </p>
+          <Button variant="primary" size="sm" href="/about">
+            Read More
+          </Button>
         </div>
 
-        {/* Read More */}
-        <Button variant="primary" size="sm" href="/about">
-          Read More
-        </Button>
-
-        {/* Stats chips — 3 on top row, 2 on bottom row, then dashed indicator */}
         <div className="flex flex-col items-center">
-          <div className="flex flex-col items-center gap-2">
+          <div className="flex flex-col items-center gap-2 lg:w-[724px]">
             {[stats.slice(0, 3), stats.slice(3)].map((row, rowIdx) => (
               <div
                 key={rowIdx}
                 className="flex flex-wrap items-center justify-center gap-2"
               >
                 {row.map((s) => (
-                  <span
-                    key={s.label}
-                    className="flex items-center gap-2 whitespace-nowrap rounded-full border border-white/[0.08] bg-white/10 px-3 py-1.5 text-[12px] text-white/90 backdrop-blur-[4.5px] md:text-[13px]"
-                    style={{ fontFamily: "var(--font-poppins-stack)" }}
-                  >
-                    <span className="text-[12px] text-[#F5A623]">✦</span>
-                    <span className="flex items-center gap-1">
-                      <span className="font-semibold text-white">
-                        {s.value}
-                      </span>
-                      <span className="font-normal">{s.label}</span>
-                    </span>
-                  </span>
+                  <StatChip key={s.label} {...s} run={inView} />
                 ))}
               </div>
             ))}
           </div>
 
-          {/* Dashed perspective indicator with circle handle */}
-          <svg
-            aria-hidden="true"
-            className="h-auto w-[396px] max-w-full"
-            viewBox="0 0 396 120"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M189.76 69.6171H377.654C387.576 69.6171 395.62 61.5736 395.62 51.6511V1.49609"
-              stroke="url(#wwa_p0)"
-              strokeWidth="0.748582"
-              strokeDasharray="8.98 8.98"
+          {/* Bottom block — Figma 24:4161 */}
+          <div className="relative h-[120px] w-[396px] max-w-full overflow-hidden">
+            <img
+              src="/assets/wwa-line.svg"
+              alt=""
+              aria-hidden="true"
+              className="absolute top-0 left-0 h-[70.357px] w-[396px] max-w-none"
             />
-            <path
-              d="M189.758 69.6142H18.3332C8.4107 69.6142 0.367188 61.5707 0.367188 51.6483V-0.00390625"
-              stroke="url(#wwa_p1)"
-              strokeWidth="0.748582"
-              strokeDasharray="8.98 8.98"
+            <img
+              src="/assets/wwa-handle.svg"
+              alt=""
+              aria-hidden="true"
+              className="absolute top-[50.31%] right-[46.97%] bottom-[32.81%] left-[47.92%] max-w-none"
             />
-            <path
-              d="M189.76 70.3604V38.9199"
-              stroke="url(#wwa_p2)"
-              strokeWidth="0.748582"
-              strokeDasharray="8.98 8.98"
-            />
-            <path
-              d="M189.877 75C192.362 75 194.377 72.9853 194.377 70.5C194.377 68.0147 192.362 66 189.877 66C187.392 66 185.377 68.0147 185.377 70.5C185.377 72.9853 187.392 75 189.877 75Z"
-              fill="#EDEDED"
-            />
-            <path
-              opacity="0.5"
-              d="M189.875 80.625C195.467 80.625 200 76.0919 200 70.5C200 64.9081 195.467 60.375 189.875 60.375C184.283 60.375 179.75 64.9081 179.75 70.5C179.75 76.0919 184.283 80.625 189.875 80.625Z"
-              stroke="#CCCCCC"
-              strokeWidth="0.75"
-            />
-            <defs>
-              <linearGradient
-                id="wwa_p0"
-                x1="387.43"
-                y1="1.86065"
-                x2="209.025"
-                y2="72.2132"
-                gradientUnits="userSpaceOnUse"
-              >
-                <stop stopColor="#161835" />
-                <stop offset="1" stopColor="#9FA3C7" />
-              </linearGradient>
-              <linearGradient
-                id="wwa_p1"
-                x1="-4.79129"
-                y1="-0.00390536"
-                x2="169.298"
-                y2="63.3052"
-                gradientUnits="userSpaceOnUse"
-              >
-                <stop stopColor="#161835" />
-                <stop offset="1" stopColor="#9FA3C7" />
-              </linearGradient>
-              <linearGradient
-                id="wwa_p2"
-                x1="189.76"
-                y1="70.36"
-                x2="189.76"
-                y2="38.92"
-                gradientUnits="userSpaceOnUse"
-              >
-                <stop stopColor="#151B3B" />
-                <stop offset="1" stopColor="#9FA3C7" />
-              </linearGradient>
-            </defs>
-          </svg>
+          </div>
         </div>
-      </div>
-
-      {/* Road / horizon visual */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none relative h-[110px] w-full overflow-hidden md:h-[180px] lg:absolute lg:top-[339px] lg:h-[248px]"
-      >
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              "linear-gradient(180deg, var(--bg-main) 0%, transparent 40%, transparent 60%, var(--bg-main) 100%), radial-gradient(ellipse 60% 100% at 50% 100%, rgba(115,82,221,0.18) 0%, transparent 70%)",
-          }}
-        />
-        {/* Perspective grid lines converging to horizon */}
-        <svg
-          className="absolute inset-0 h-full w-full"
-          viewBox="0 0 1440 220"
-          preserveAspectRatio="none"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          {/* Converging lines */}
-          {[-6, -4, -2, 0, 2, 4, 6].map((i) => (
-            <line
-              key={i}
-              x1={720 + i * 20}
-              y1={0}
-              x2={720 + i * 240}
-              y2={220}
-              stroke="rgba(255,255,255,0.06)"
-              strokeWidth="1"
-            />
-          ))}
-          {/* Horizontal lines */}
-          {[0.3, 0.5, 0.7, 0.85, 1].map((t) => (
-            <line
-              key={t}
-              x1={720 - t * 700}
-              y1={t * 220}
-              x2={720 + t * 700}
-              y2={t * 220}
-              stroke="rgba(255,255,255,0.05)"
-              strokeWidth="1"
-            />
-          ))}
-        </svg>
       </div>
     </section>
   );
