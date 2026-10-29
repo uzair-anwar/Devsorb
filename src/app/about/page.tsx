@@ -22,7 +22,7 @@ export const revalidate = 60;
 export default async function AboutPage() {
   const team = await getTeamMembers();
   return (
-    <main className="min-h-screen bg-[var(--bg-main)]">
+    <main className="min-h-screen bg-[var(--bg-main)] lg:flex lg:flex-col lg:gap-[181px]">
       <Navbar />
       <AboutHero />
       <WhoWeAre />

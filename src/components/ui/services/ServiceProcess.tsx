@@ -119,7 +119,7 @@ const ServiceProcess = ({ steps }: Props) => {
   const bottom = steps.slice(3);
 
   return (
-    <section className="relative isolate w-full overflow-hidden bg-[#08081a] py-20">
+    <section className="relative isolate w-full overflow-hidden bg-[#08081a] py-20 lg:py-[56px]">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 opacity-50"

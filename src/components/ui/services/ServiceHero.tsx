@@ -8,7 +8,7 @@ type Props = {
 
 const ServiceHero = ({ title, subtitle, ctaText }: Props) => {
   return (
-    <section className="relative isolate h-[520px] overflow-hidden md:h-[600px]">
+    <section className="relative isolate h-[520px] overflow-hidden md:h-[600px] lg:h-[575px]">
       <div className="pointer-events-none absolute inset-0 z-0">
         <img
           src="/assets/about-hero-bg.png"

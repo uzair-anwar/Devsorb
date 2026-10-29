@@ -93,12 +93,9 @@ const ContactForm = () => {
                 </a>{" "}
                 — your message is ready as a pre-filled draft.
               </p>
-              <a
-                href={buildContactMailto(form)}
-                className="inline-flex h-[40px] w-fit items-center justify-center rounded-[8px] border border-[#020a18] bg-[var(--text-headline)] px-4 text-[16px] font-medium leading-none text-[#150544] shadow-[0_0_16px_rgba(57,115,233,0.25)] transition-colors hover:bg-white"
-              >
+              <Button variant="light" size="sm" href={buildContactMailto(form)} className="w-fit">
                 Open email draft
-              </a>
+              </Button>
             </div>
           ) : (
           <form
@@ -167,7 +164,7 @@ const ContactForm = () => {
 
             <div className="mt-2">
               <Button
-                variant="primary"
+                variant="light"
                 size="sm"
                 type="submit"
                 className="w-fit"

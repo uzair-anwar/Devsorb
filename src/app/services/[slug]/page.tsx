@@ -40,7 +40,7 @@ export default async function ServicePage({
   if (!service) notFound();
 
   return (
-    <main className="min-h-screen bg-[var(--bg-main)]">
+    <main className="min-h-screen bg-[var(--bg-main)] lg:flex lg:flex-col lg:gap-[100px]">
       <Navbar />
       <ServiceHero
         title={service.heroTitle}

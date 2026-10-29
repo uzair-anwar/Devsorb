@@ -19,14 +19,14 @@ const awards = [
 
 const Awards = () => {
   return (
-    <section className="mx-auto w-full max-w-[1180px] px-4 py-20 lg:px-0">
+    <section className="mx-auto w-full max-w-[1180px] px-4 py-20 lg:px-0 lg:py-0">
       {/* Heading */}
       <div className="mb-[88px] flex flex-col items-center gap-4 text-center">
         <h2
           className="text-[36px] font-bold leading-[36px] text-[var(--text-headline)]"
           style={{ fontFamily: "var(--font-display)" }}
         >
-          Awards &amp; Recognitions
+          Recognition &amp; Industry Credibility
         </h2>
         <p
           className="max-w-[640px] text-[20px] leading-[26px] text-[rgba(255,255,255,0.65)]"

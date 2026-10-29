@@ -22,7 +22,7 @@ const MeetTheExperts = ({ members }: { members: TeamMember[] }) => {
   };
 
   return (
-    <section className="mx-auto flex w-full max-w-[1139px] flex-col items-center gap-10 px-4 py-12 lg:px-0">
+    <section className="mx-auto flex w-full max-w-[1139px] flex-col items-center gap-10 px-4 py-12 lg:px-0 lg:py-0">
       <div className="flex flex-col items-center gap-4 text-center">
         <h2
           className="text-[30px] font-bold leading-[1] text-white lg:text-[36px] lg:leading-[36px]"

@@ -24,7 +24,7 @@ const CheckIcon = () => (
 
 const ServiceCapabilities = ({ capabilities, image }: Props) => {
   return (
-    <section className="mx-auto w-full max-w-[1180px] px-4 py-16 lg:px-0 lg:py-20">
+    <section className="mx-auto w-full max-w-[1180px] px-4 py-16 lg:px-0 lg:py-0">
       <h2
         className="mb-10 text-[28px] font-bold leading-[1.2] text-[var(--text-headline)] md:text-[34px]"
         style={{ fontFamily: "var(--font-display)" }}
