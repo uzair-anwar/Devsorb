@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[var(--bg-main)]">
+    <main className="min-h-screen bg-[var(--bg-main)] lg:flex lg:flex-col lg:gap-[150px]">
       <Navbar />
       <Hero />
       <HomeWhoWeAre />

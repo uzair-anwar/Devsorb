@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const AboutCTA = () => {
   return (
-    <section className="mx-auto w-full max-w-[1300px] px-4 py-12 lg:px-0">
+    <section className="mx-auto w-full max-w-[1300px] px-4 py-12 lg:max-w-[1278px] lg:px-0 lg:py-0">
       <div
         className="relative flex h-[405px] w-full flex-col items-center justify-center overflow-hidden rounded-[39px] border border-[rgba(255,255,255,0.2)]"
         style={{

@@ -35,7 +35,7 @@ const Hero = () => {
       </div>
 
       <div className="relative z-20 mx-auto h-full w-full max-w-[1440px] px-4 md:px-8">
-        <div className="absolute top-[70px] left-1/2 z-20 flex w-[267px] -translate-x-1/2 flex-col items-center text-center sm:top-[132px] sm:w-[397px] lg:top-[255px] lg:w-[864px]">
+        <div className="absolute top-[70px] left-1/2 z-20 flex w-[267px] -translate-x-1/2 flex-col items-center text-center sm:top-[132px] sm:w-[397px] lg:top-[278px] lg:w-[864px]">
           <h1 className="mb-0 text-[25px] leading-[32px] font-bold text-[var(--text-headline)] drop-shadow-2xl sm:text-[44px] sm:leading-[52px] lg:text-[81px] lg:leading-[90px]">
             <span className="block whitespace-nowrap">
               Build. Scale. Automate.

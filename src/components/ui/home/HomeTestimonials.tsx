@@ -111,19 +111,19 @@ const HomeTestimonials = () => {
   });
 
   return (
-    <section className="relative mx-auto w-full max-w-[1300px] overflow-hidden px-4 py-24 lg:px-0">
+    <section className="relative mx-auto w-full max-w-[1300px] overflow-hidden px-4 py-24 lg:overflow-x-clip lg:overflow-y-visible lg:px-0 lg:py-0">
       {/* Globe background */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
         <img
           src="/assets/about-testimonial-globe.png"
           alt=""
-          className="h-auto w-[720px] max-w-none object-contain opacity-50"
+          className="h-auto w-[720px] max-w-none object-contain opacity-50 lg:w-[605px]"
           style={{ marginTop: "120px" }}
         />
       </div>
 
       {/* Section heading */}
-      <div className="relative z-10 mb-20 flex flex-col items-center gap-4">
+      <div className="relative z-10 mb-20 flex flex-col items-center gap-4 lg:mb-[56px]">
         <div className="flex items-center gap-3">
           <span className="h-px w-8 bg-gradient-to-r from-transparent to-[rgba(244,247,255,0.55)]" />
           <span
@@ -135,7 +135,7 @@ const HomeTestimonials = () => {
           <span className="h-px w-8 bg-gradient-to-l from-transparent to-[rgba(244,247,255,0.55)]" />
         </div>
         <h2
-          className="text-[36px] font-bold leading-[40px] text-[var(--text-headline)] md:text-[44px] md:leading-[48px]"
+          className="text-[36px] font-bold leading-[40px] text-[var(--text-headline)] md:text-[44px] md:leading-[48px] lg:text-[36px] lg:leading-[36px]"
           style={{ fontFamily: "var(--font-display)" }}
         >
           Real Stories, Real Results

@@ -118,7 +118,7 @@ const WhyChooseUs = () => {
   const rightFeatures = features.filter((f) => f.side === "right");
 
   return (
-    <section className="relative mx-auto w-full max-w-[1280px] overflow-hidden px-4 py-24 lg:px-0">
+    <section className="relative mx-auto w-full max-w-[1280px] overflow-hidden px-4 py-24 lg:overflow-x-clip lg:overflow-y-visible lg:px-0 lg:py-0">
       {/* Heading */}
       <div className="relative z-10 mb-16 flex flex-col items-center gap-4 text-center">
         <h2

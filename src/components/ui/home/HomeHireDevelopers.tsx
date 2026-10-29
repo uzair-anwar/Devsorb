@@ -2,7 +2,7 @@ import Button from "@/components/shared/button/button";
 
 const HomeHireDevelopers = () => {
   return (
-    <section className="mx-auto w-full max-w-[1278px] px-4 py-10 lg:h-[605px] lg:px-0 lg:py-[100px]">
+    <section className="mx-auto w-full max-w-[1278px] px-4 py-10 lg:px-0 lg:py-0">
       <div
         id="hire"
         className="relative flex min-h-[405px] scroll-mt-24 flex-col items-center justify-center overflow-hidden rounded-[39px] border border-[rgba(255,255,255,0.2)] px-8 text-center"

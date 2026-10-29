@@ -71,7 +71,7 @@ const Footer = () => {
             >
               Services links
             </h4>
-            <ul className="flex flex-col gap-3 lg:gap-[15px]">
+            <ul className="flex flex-col gap-3 lg:gap-[19px] lg:leading-[14px]">
               {SERVICES.map((svc) => (
                 <li key={svc.slug}>
                   <Link
@@ -87,14 +87,14 @@ const Footer = () => {
           </div>
 
           {/* Quick Links */}
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-5 lg:gap-6">
             <h4
               className="text-[14px] font-semibold text-[var(--text-headline)]"
               style={{ fontFamily: "var(--font-poppins-stack)" }}
             >
               Quick Links
             </h4>
-            <ul className="flex flex-col gap-3">
+            <ul className="flex flex-col gap-3 lg:gap-[19px] lg:leading-[14px]">
               {quickLinks.map((link) => (
                 <li key={link.name}>
                   <Link
@@ -110,14 +110,14 @@ const Footer = () => {
           </div>
 
           {/* Follow Us */}
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-5 lg:gap-6">
             <h4
               className="text-[14px] font-semibold text-[var(--text-headline)]"
               style={{ fontFamily: "var(--font-poppins-stack)" }}
             >
               Follow Us
             </h4>
-            <ul className="flex flex-col gap-3">
+            <ul className="flex flex-col gap-3 lg:gap-[19px] lg:leading-[14px]">
               {socialLinks.map((link) => (
                 <li key={link.name}>
                   <a
@@ -136,14 +136,14 @@ const Footer = () => {
           </div>
 
           {/* Contact */}
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-5 lg:gap-6">
             <h4
               className="text-[14px] font-semibold text-[var(--text-headline)]"
               style={{ fontFamily: "var(--font-poppins-stack)" }}
             >
               Contact
             </h4>
-            <ul className="flex flex-col gap-3">
+            <ul className="flex flex-col gap-3 lg:gap-[19px] lg:leading-[14px]">
               <li className="flex items-start gap-2 text-[13px] text-[rgba(255,255,255,0.5)]" style={{ fontFamily: "var(--font-poppins-stack)" }}>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="mt-0.5 shrink-0">
                   <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="currentColor" strokeWidth="1.5" />

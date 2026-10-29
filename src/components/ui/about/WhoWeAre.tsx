@@ -27,7 +27,7 @@ const cards = [
 
 const WhoWeAre = () => {
   return (
-    <section className="relative mx-auto w-full max-w-[1167px] px-4 pb-16 pt-10 lg:px-0 lg:pb-[55px] lg:pt-[34px]">
+    <section className="relative mx-auto w-full max-w-[1167px] px-4 pb-16 pt-10 lg:px-0 lg:py-0">
       {/* Purple radial glow background */}
       <div
         aria-hidden="true"

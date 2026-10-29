@@ -11,7 +11,7 @@ const ServiceFAQ = ({ faqs }: Props) => {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
 
   return (
-    <section className="mx-auto w-full max-w-[760px] px-4 py-16 lg:px-0 lg:py-20">
+    <section className="mx-auto w-full max-w-[760px] px-4 py-16 lg:px-0 lg:py-0">
       <h2
         className="mb-10 text-center text-[28px] font-bold leading-[1.2] text-[var(--text-headline)] md:text-[34px]"
         style={{ fontFamily: "var(--font-display)" }}
