@@ -43,7 +43,7 @@ const HomeContact = () => {
   };
 
   return (
-    <section id="contact" className="relative mx-auto w-full max-w-[1172px] overflow-hidden px-4 py-20 lg:h-[753px] lg:px-0 lg:py-0">
+    <section id="contact" className="relative mx-auto w-full max-w-[1172px] overflow-hidden px-4 py-20 lg:h-[753px] lg:overflow-x-clip lg:overflow-y-visible lg:px-0 lg:py-0">
       <SectionHeading
         label="Contact us"
         title="Let's Build Something Amazing Together"
