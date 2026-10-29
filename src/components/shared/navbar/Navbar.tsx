@@ -38,6 +38,15 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Keep the page behind the mobile menu from scrolling while it's open.
+  useEffect(() => {
+    if (!isOpen) return;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
   const openServices = () => {
     if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
     setServicesOpen(true);
@@ -48,165 +57,170 @@ const Navbar = () => {
   };
 
   return (
-    <nav
-      className={`fixed top-0 right-0 left-0 z-[100] transition-all duration-300 ${
-        scrolled
-          ? "bg-[var(--bg-main-alpha-40)] py-4 backdrop-blur-md"
-          : "bg-transparent py-6 lg:py-8"
-      }`}
-    >
-      <div className="mx-auto max-w-[73.75rem] px-4 lg:max-w-[1229px] lg:px-0">
-        <div className="flex h-[2.5rem] items-center justify-between lg:justify-center">
-          <div className="hidden w-full items-center justify-center gap-[7rem] lg:flex">
-            <Link href="/" className="flex shrink-0 items-center">
-              <Image
-                src="/assets/logo.svg"
-                alt="Devsorb"
-                width={153}
-                height={36}
-                className="h-[2.5rem] w-auto object-contain"
-                priority
-              />
-            </Link>
+    <>
+      <nav
+        className={`fixed top-0 right-0 left-0 z-[100] transition-all duration-300 ${
+          scrolled
+            ? "bg-[var(--bg-main-alpha-40)] py-4 backdrop-blur-md"
+            : "bg-transparent py-6 lg:py-8"
+        }`}
+      >
+        <div className="mx-auto max-w-[73.75rem] px-4 lg:max-w-[1229px] lg:px-0">
+          <div className="flex h-[2.5rem] items-center justify-between lg:justify-center">
+            <div className="hidden w-full items-center justify-center gap-[7rem] lg:flex">
+              <Link href="/" className="flex shrink-0 items-center">
+                <Image
+                  src="/assets/logo.svg"
+                  alt="Devsorb"
+                  width={153}
+                  height={36}
+                  className="h-[2.5rem] w-auto object-contain"
+                  priority
+                />
+              </Link>
 
-            <div className="flex h-[2rem] items-center gap-6">
-              {navItems.map((item) =>
-                item.hasDropdown ? (
-                  <div
-                    key={item.name}
-                    className="relative"
-                    onMouseEnter={openServices}
-                    onMouseLeave={scheduleClose}
-                  >
-                    <button
-                      type="button"
-                      onClick={() => setServicesOpen((s) => !s)}
-                      aria-haspopup="true"
-                      aria-expanded={servicesOpen}
-                      className="font-poppins flex cursor-pointer items-center gap-1 align-middle text-[1rem] leading-[1rem] font-normal whitespace-nowrap transition-opacity hover:opacity-70"
+              <div className="flex h-[2rem] items-center gap-6">
+                {navItems.map((item) =>
+                  item.hasDropdown ? (
+                    <div
+                      key={item.name}
+                      className="relative"
+                      onMouseEnter={openServices}
+                      onMouseLeave={scheduleClose}
+                    >
+                      <button
+                        type="button"
+                        onClick={() => setServicesOpen((s) => !s)}
+                        aria-haspopup="true"
+                        aria-expanded={servicesOpen}
+                        className="font-poppins flex cursor-pointer items-center gap-1 align-middle text-[1rem] leading-[1rem] font-normal whitespace-nowrap transition-opacity hover:opacity-70"
+                        style={{
+                          color: "var(--white)",
+                          fontFamily: "var(--font-poppins-stack)",
+                        }}
+                      >
+                        {item.name}
+                        <svg
+                          width="10"
+                          height="10"
+                          viewBox="0 0 10 10"
+                          fill="none"
+                          aria-hidden="true"
+                          className={`transition-transform duration-200 ${
+                            servicesOpen ? "rotate-180" : ""
+                          }`}
+                        >
+                          <path
+                            d="M2 3.5L5 6.5L8 3.5"
+                            stroke="currentColor"
+                            strokeWidth="1.4"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </button>
+
+                      {servicesOpen && (
+                        <div
+                          className="absolute top-full left-1/2 z-[120] mt-3 w-[320px] -translate-x-1/2 rounded-[10px] border border-[rgba(255,255,255,0.08)] p-2 shadow-[0_10px_40px_rgba(0,0,0,0.5)] backdrop-blur-md"
+                          style={{
+                            backgroundImage:
+                              "linear-gradient(180deg, rgba(34,17,88,0.95) 0%, rgba(13,13,25,0.97) 100%)",
+                          }}
+                          role="menu"
+                        >
+                          <ul className="flex flex-col">
+                            {SERVICES.map((svc) => (
+                              <li key={svc.slug}>
+                                <Link
+                                  href={`/services/${svc.slug}`}
+                                  onClick={() => setServicesOpen(false)}
+                                  className="block rounded-[6px] px-3 py-2 text-[13px] text-[rgba(255,255,255,0.75)] transition-colors hover:bg-[rgba(171,145,234,0.12)] hover:text-[var(--text-headline)]"
+                                  style={{
+                                    fontFamily: "var(--font-poppins-stack)",
+                                  }}
+                                  role="menuitem"
+                                >
+                                  {svc.navTitle}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className="font-poppins flex items-center gap-1 align-middle text-[1rem] leading-[1rem] font-normal whitespace-nowrap transition-opacity hover:opacity-70"
                       style={{
                         color: "var(--white)",
                         fontFamily: "var(--font-poppins-stack)",
                       }}
                     >
                       {item.name}
-                      <svg
-                        width="10"
-                        height="10"
-                        viewBox="0 0 10 10"
-                        fill="none"
-                        aria-hidden="true"
-                        className={`transition-transform duration-200 ${
-                          servicesOpen ? "rotate-180" : ""
-                        }`}
-                      >
-                        <path
-                          d="M2 3.5L5 6.5L8 3.5"
-                          stroke="currentColor"
-                          strokeWidth="1.4"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </button>
+                    </Link>
+                  )
+                )}
+              </div>
 
-                    {servicesOpen && (
-                      <div
-                        className="absolute left-1/2 top-full z-[120] mt-3 w-[320px] -translate-x-1/2 rounded-[10px] border border-[rgba(255,255,255,0.08)] p-2 shadow-[0_10px_40px_rgba(0,0,0,0.5)] backdrop-blur-md"
-                        style={{
-                          backgroundImage:
-                            "linear-gradient(180deg, rgba(34,17,88,0.95) 0%, rgba(13,13,25,0.97) 100%)",
-                        }}
-                        role="menu"
-                      >
-                        <ul className="flex flex-col">
-                          {SERVICES.map((svc) => (
-                            <li key={svc.slug}>
-                              <Link
-                                href={`/services/${svc.slug}`}
-                                onClick={() => setServicesOpen(false)}
-                                className="block rounded-[6px] px-3 py-2 text-[13px] text-[rgba(255,255,255,0.75)] transition-colors hover:bg-[rgba(171,145,234,0.12)] hover:text-[var(--text-headline)]"
-                                style={{
-                                  fontFamily: "var(--font-poppins-stack)",
-                                }}
-                                role="menuitem"
-                              >
-                                {svc.navTitle}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                  </div>
-                ) : (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className="font-poppins flex items-center gap-1 align-middle text-[1rem] leading-[1rem] font-normal whitespace-nowrap transition-opacity hover:opacity-70"
-                    style={{
-                      color: "var(--white)",
-                      fontFamily: "var(--font-poppins-stack)",
-                    }}
-                  >
-                    {item.name}
-                  </Link>
-                ),
-              )}
+              <div className="flex shrink-0 items-center gap-2">
+                <Button
+                  variant="primary"
+                  size="sm"
+                  href="/contact-us"
+                  className="h-10 w-[135px] cursor-pointer px-0 whitespace-nowrap"
+                >
+                  Get In Touch
+                </Button>
+                <LanguageSwitcher />
+              </div>
             </div>
 
-            <div className="flex shrink-0 items-center gap-2">
+            <div className="flex w-full items-center justify-between lg:hidden">
+              <Link href="/" className="flex items-center">
+                <Image
+                  src="/assets/logo.svg"
+                  alt="Devsorb"
+                  width={66}
+                  height={16}
+                  className="h-4 w-auto object-contain sm:h-[2.0625rem]"
+                  style={{ width: "auto" }}
+                />
+              </Link>
+
               <Button
-                variant="primary"
+                variant="ghost"
                 size="sm"
-                href="/contact-us"
-                className="h-10 w-[135px] cursor-pointer whitespace-nowrap px-0"
+                className="cursor-pointer !p-2"
+                onClick={() => setIsOpen(!isOpen)}
+                aria-label="Toggle menu"
               >
-                Get In Touch
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <line x1="3" y1="12" x2="21" y2="12"></line>
+                  <line x1="3" y1="6" x2="21" y2="6"></line>
+                  <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
               </Button>
-              <LanguageSwitcher />
             </div>
-          </div>
-
-          <div className="flex w-full items-center justify-between lg:hidden">
-            <Link href="/" className="flex items-center">
-              <Image
-                src="/assets/logo.svg"
-                alt="Devsorb"
-                width={66}
-                height={16}
-                className="h-4 w-auto object-contain sm:h-[2.0625rem]"
-                style={{ width: "auto" }}
-              />
-            </Link>
-
-            <Button
-              variant="ghost"
-              size="sm"
-              className="cursor-pointer !p-2"
-              onClick={() => setIsOpen(!isOpen)}
-              aria-label="Toggle menu"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <line x1="3" y1="12" x2="21" y2="12"></line>
-                <line x1="3" y1="6" x2="21" y2="6"></line>
-                <line x1="3" y1="18" x2="21" y2="18"></line>
-              </svg>
-            </Button>
           </div>
         </div>
-      </div>
+      </nav>
 
+      {/* Rendered outside <nav>: the nav's scrolled backdrop-blur would
+          otherwise become this fixed panel's containing block and shrink
+          it to the nav's height. */}
       <div
         className={`fixed inset-0 z-[110] overflow-y-auto bg-[var(--bg-main)] transition-transform duration-500 ease-in-out lg:hidden ${
           isOpen ? "translate-x-0" : "translate-x-full"
@@ -314,7 +328,7 @@ const Navbar = () => {
                 >
                   {item.name}
                 </Link>
-              ),
+              )
             )}
             <div className="mt-8 flex flex-col gap-6 border-t border-[var(--white)]/10 pt-8">
               <Button
@@ -331,7 +345,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-    </nav>
+    </>
   );
 };
 
