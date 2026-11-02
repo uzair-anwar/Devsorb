@@ -4,4 +4,4 @@
  * .netlify.app URL before the domain goes live).
  */
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.devsorb.com";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://devsorb.com";
