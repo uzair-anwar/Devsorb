@@ -12,3 +12,90 @@
 # auto-detection doesn't kick in when the site pre-dates the switch.
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+# Old WordPress URLs (devsorb.com before the Next.js launch) → new pages,
+# so indexed links and bookmarks keep working. Netlify ignores trailing
+# slashes when matching.
+[[redirects]]
+  from = "/contact"
+  to = "/contact-us"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/hire-developers"
+  to = "/hire-developer"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/job/*"
+  to = "/careers"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/job"
+  to = "/careers"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/custom-software-development"
+  to = "/services/custom-software-development"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/ai-machine-learning-development"
+  to = "/services/ai-machine-learning-development"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blockchain-development"
+  to = "/services/blockchain-development"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/front-backend-development"
+  to = "/services/front-backend-development"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/android-ios-app-development"
+  to = "/services/android-ios-app-development"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/devops-cloud-services"
+  to = "/services/devops-cloud-services"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/software-testing"
+  to = "/services/software-testing-services"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/system-integration"
+  to = "/services/system-integration-services"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/mvp-development"
+  to = "/services/mvp-development-services"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/enterprise-software-development"
+  to = "/services/enterprise-software-development"
+  status = 301
+  force = true
